@@ -1,5 +1,5 @@
 vim.cmd [[
-  set packpath^=~/.local/share/pvim/site
+  set packpath^=~/.local/share/pennyvim/site
   set packpath^=~/.config/pvim
 
   set runtimepath^=~/.config/pvim
