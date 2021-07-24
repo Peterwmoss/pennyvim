@@ -19,7 +19,7 @@ install_config() {
   echo 'Cloning pvim config...'
   mkdir -p $pennyvim_location
 
-  git clone https://github.com/Peterkmoss/pvim.git "$git_location"
+  git clone https://github.com/Peterkmoss/pennyvim.git "$git_location"
 
   # Install bin / alias
   (command -v doas >/dev/null && doas cp "$bin_location" "/usr/local/bin") || (command -v sudo >/dev/null && sudo cp "$bin_location" "/usr/local/bin") 
