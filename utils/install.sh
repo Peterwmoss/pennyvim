@@ -1,5 +1,5 @@
 # Directories
-vilua_location="$HOME/.local/share/vilua/"
+vilua_location="$HOME/.local/share/vilua"
 config_location="$HOME/.config/vilua"
 
 # Subdirectories
@@ -9,7 +9,7 @@ packer_location="$vilua_location/site/pack/packer/start/packer.nvim"
 # Files
 init_lua_location="$vilua_location/vilua/init.lua"
 config_lua_location="$vilua_location/vilua/config.lua"
-bin_location="$vilua_location/vilua/utils/vilua"
+bin_location="$vilua_location/vilua/bin/vilua"
 
 install_packer() {
   git clone https://github.com/wbthomason/packer.nvim "$packer_location"
@@ -22,8 +22,7 @@ install_config() {
   git clone https://github.com/Peterkmoss/vilua.git "$git_location"
 
   # Install bin / alias
-  (command -v doas >/dev/null && doas cp "$bin_location" "/usr/local/bin") 
-  (command -v sudo >/dev/null && sudo cp "$bin_location" "/usr/local/bin") 
+  (command -v doas >/dev/null && doas cp "$bin_location" "/usr/local/bin") || (command -v sudo >/dev/null && sudo cp "$bin_location" "/usr/local/bin") 
 
   mkdir -p "$config_location"
   cp "$config_lua_location" "$config_location/config-example.lua"
