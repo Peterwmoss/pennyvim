@@ -17,6 +17,3 @@ require('packer').startup(function()
   use { 'neovim/nvim-lspconfig' }
 
 end)
-
-require "lsp.treesitter"
-require "lsp.lspconfig"
