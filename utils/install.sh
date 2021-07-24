@@ -8,7 +8,7 @@ packer_location="$vilua_location/site/pack/packer/start/packer.nvim"
 
 # Files
 init_lua_location="$vilua_location/vilua/init.lua"
-config_lua_location="$vilua_location/vilua/config.lua"
+config_lua_location="$vilua_location/vilua/utils/config-example.lua"
 bin_location="$vilua_location/vilua/bin/vilua"
 
 install_packer() {
@@ -42,8 +42,23 @@ echo 'Installing Vilua'
 
 case "$@" in
   *--reinstall*)
-    echo '!REINSTALL! => Removing all current config due to reinstall'
+    echo '!!REINSTALL!! Removing all current config due to reinstall...'
+
+    echo "5..."
+    sleep 1000
+    echo "4..."
+    sleep 1000
+    echo "3..."
+    sleep 1000
+    echo "2..."
+    sleep 1000
+    echo "1..."
+    sleep 1000
+
+    echo "Removing $vilua_location"
     rm -rf "$vilua_location"
+
+    echo "Removing $config_location"
     rm -rf "$config_location"
     ;;
 esac
