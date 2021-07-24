@@ -1,25 +1,25 @@
 # Directories
-vilua_location="$HOME/.local/share/vilua"
-config_location="$HOME/.config/vilua"
+pennyvim_location="$HOME/.local/share/pennyvim"
+config_location="$HOME/.config/pvim"
 
 # Subdirectories
-git_location="$vilua_location/vilua"
-packer_location="$vilua_location/site/pack/packer/start/packer.nvim"
+git_location="$pennyvim_location/pvim"
+packer_location="$pennyvim_location/site/pack/packer/start/packer.nvim"
 
 # Files
-init_lua_location="$vilua_location/vilua/init.lua"
-config_lua_location="$vilua_location/vilua/utils/config-example.lua"
-bin_location="$vilua_location/vilua/bin/vilua"
+init_lua_location="$pennyvim_location/pvim/init.lua"
+config_lua_location="$pennyvim_location/pvim/utils/config-example.lua"
+bin_location="$pennyvim_location/pvim/bin/pvim"
 
 install_packer() {
   git clone https://github.com/wbthomason/packer.nvim "$packer_location"
 }
 
 install_config() {
-  echo 'Cloning Vilua config...'
-  mkdir -p $vilua_location
+  echo 'Cloning pvim config...'
+  mkdir -p $pennyvim_location
 
-  git clone https://github.com/Peterkmoss/vilua.git "$git_location"
+  git clone https://github.com/Peterkmoss/pvim.git "$git_location"
 
   # Install bin / alias
   (command -v doas >/dev/null && doas cp "$bin_location" "/usr/local/bin") || (command -v sudo >/dev/null && sudo cp "$bin_location" "/usr/local/bin") 
@@ -38,7 +38,7 @@ install_config() {
   echo 'Install complete'
 }
 
-echo 'Installing Vilua'
+echo 'Installing pvim'
 
 case "$@" in
   *--reinstall*)
@@ -55,15 +55,15 @@ case "$@" in
     echo "1..."
     sleep 1
 
-    echo "Removing $vilua_location"
-    rm -rf "$vilua_location"
+    echo "Removing $pennyvim_location"
+    rm -rf "$pennyvim_location"
 
     echo "Removing $config_location"
     rm -rf "$config_location"
     ;;
 esac
 
-[ -d "$vilua_location" ] && echo 'Vilua already installed' && exit
+[ -d "$pennyvim_location" ] && echo 'pvim already installed' && exit
 
 if [ -e "$packer_location" ]; then
 	echo 'packer is already installed... skipping'
@@ -72,7 +72,7 @@ else
 fi
 
 if [ -e "$init_lua_location" ]; then
-  echo 'Vilua already installed. To reinstall provide the --reinstall option'
+  echo 'pvim already installed. To reinstall provide the --reinstall option'
 else
   install_config
 fi
