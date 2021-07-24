@@ -1,6 +1,6 @@
 vim.cmd [[packadd packer.nvim]]
 
-require('packer').startup(function()
+return require('packer').startup(function()
   -- For packer updates
   use 'wbthomason/packer.nvim'
 
