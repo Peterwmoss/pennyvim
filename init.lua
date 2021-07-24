@@ -5,4 +5,4 @@ vim.cmd [[
   set runtimepath^=~/.config/vilua
 ]]
 
-require "plugins"
+require ('plugins')

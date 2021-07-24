@@ -9,5 +9,6 @@ return require('packer').startup(function()
 
   -- Stuff
   -- use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use { 'gruvbox-community/gruvbox' }
 
 end)
