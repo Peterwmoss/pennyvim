@@ -38,7 +38,7 @@ install_config() {
   echo 'Install complete'
 }
 
-echo 'Installing pvim'
+echo 'Installing PennyVim'
 
 case "$@" in
   *--reinstall*)
@@ -63,7 +63,7 @@ case "$@" in
     ;;
 esac
 
-[ -d "$pennyvim_location" ] && echo 'pvim already installed' && exit
+[ -d "$pennyvim_location" ] && echo 'PennyVim already installed' && exit
 
 if [ -e "$packer_location" ]; then
 	echo 'packer is already installed... skipping'
@@ -72,7 +72,7 @@ else
 fi
 
 if [ -e "$init_lua_location" ]; then
-  echo 'pvim already installed. To reinstall provide the --reinstall option'
+  echo 'PennyVim already installed. To reinstall provide the --reinstall option'
 else
   install_config
 fi

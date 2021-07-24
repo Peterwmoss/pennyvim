@@ -11,7 +11,7 @@ require('packer').startup(function()
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- Colorscheme
-  use { 'gruvbox-community/gruvbox' }
+  use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 
   -- LSP
   use { 'neovim/nvim-lspconfig' }
