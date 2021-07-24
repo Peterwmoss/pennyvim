@@ -1,7 +1,5 @@
 vim.cmd [[packadd packer.nvim]]
 
-vim._update_package_paths()
-
 return require('packer').startup(function()
   -- For packer updates
   use 'wbthomason/packer.nvim'
