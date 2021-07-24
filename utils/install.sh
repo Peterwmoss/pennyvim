@@ -44,7 +44,10 @@ echo 'Installing Vilua'
 case "$@" in
   *--reinstall*)
     echo '!REINSTALL! => Removing all current config due to reinstall'
-    rm -rf "$"
+    rm -rf "$vilua_location"
+    rm -rf "$config_location"
+    ;;
+esac
 
 [ -d "$vilua_location" ] && echo 'Vilua already installed' && exit
 
@@ -59,3 +62,4 @@ if [ -e "$init_lua_location" ]; then
 else
   install_config
 fi
+
