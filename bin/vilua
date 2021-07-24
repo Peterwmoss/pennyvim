@@ -1,0 +1,3 @@
+#!/bin/sh
+
+nvim -u ~/.local/share/vilua/vilua/init.lua --cmd "set runtimepath+=~/.local/share/vilua/vilua" "$@"
