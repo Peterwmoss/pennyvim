@@ -1,8 +1,8 @@
 vim.cmd [[
-  set packpath^=~/.local/share/vilua/site
-  set packpath^=~/.config/vilua
+  set packpath^=~/.local/share/pvim/site
+  set packpath^=~/.config/pvim
 
-  set runtimepath^=~/.config/vilua
+  set runtimepath^=~/.config/pvim
 ]]
 
 require "plugins"
