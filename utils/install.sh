@@ -45,15 +45,15 @@ case "$@" in
     echo '!!REINSTALL!! Removing all current config due to reinstall...'
 
     echo "5..."
-    sleep 1000
+    sleep 1
     echo "4..."
-    sleep 1000
+    sleep 1
     echo "3..."
-    sleep 1000
+    sleep 1
     echo "2..."
-    sleep 1000
+    sleep 1
     echo "1..."
-    sleep 1000
+    sleep 1
 
     echo "Removing $vilua_location"
     rm -rf "$vilua_location"
