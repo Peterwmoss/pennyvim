@@ -12,12 +12,22 @@ config_lua_location="$pennyvim_location/pvim/utils/config.example.lua"
 bin_location="$pennyvim_location/pvim/bin/pvim"
 
 install_packer() {
+  echo ""
+  echo "   +----------------------------+"
+  echo "   |   Installing packer.nvim   |"
+  echo "   +----------------------------+"
+  echo ""
   git clone https://github.com/wbthomason/packer.nvim "$packer_location"
 }
 
 install_config() {
-  echo 'Cloning pvim config...'
-  mkdir -p $pennyvim_location
+
+  echo ""
+  mkdir -vp $pennyvim_location
+
+  echo ""
+  echo "Cloning PennyVim config..."
+  echo ""
 
   git clone https://github.com/Peterkmoss/pennyvim.git "$git_location"
 
@@ -26,10 +36,15 @@ install_config() {
   echo 'Copying executable to /usr/local/bin'
   (command -v doas >/dev/null && doas cp "$bin_location" "/usr/local/bin") || (command -v sudo >/dev/null && sudo cp "$bin_location" "/usr/local/bin") 
 
+  echo ""
   mkdir -vp "$config_location"
+  echo ""
   cp -v "$config_lua_location" "$config_location/config.lua"
+  echo ""
 
-  echo 'Installing built in plugins'
+  echo ""
+  echo "Installing built in plugins"
+  echo ""
   nvim -u "$init_lua_location" --cmd "set runtimepath+=$git_location" --headless \
     +'au User PackerComplete sleep 100m | qall' \
     +PackerInstall
