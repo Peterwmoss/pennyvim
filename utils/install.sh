@@ -8,7 +8,7 @@ packer_location="$pennyvim_location/site/pack/packer/start/packer.nvim"
 
 # Files
 init_lua_location="$pennyvim_location/pvim/init.lua"
-config_lua_location="$pennyvim_location/pvim/utils/config.lua"
+config_lua_location="$pennyvim_location/pvim/utils/config.example.lua"
 bin_location="$pennyvim_location/pvim/bin/pvim"
 
 install_packer() {
