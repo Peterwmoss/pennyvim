@@ -1,3 +1,5 @@
+CACHE_DIR = vim.fn.stdpath "cache"
+
 vim.cmd [[
   set packpath^=~/.local/share/pennyvim/site
   set packpath^=~/.config/pvim
@@ -10,6 +12,8 @@ require "keymaps"
 require "settings"
 
 require "plugins"
+
+require "user-config"
 
 -- Colorscheme loaded after plugins to not break new installs
 vim.g.colors_name = pvim.colorscheme

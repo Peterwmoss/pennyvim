@@ -13,9 +13,10 @@ return require('packer').startup(function()
   -- LSP
   use {
     "neovim/nvim-lspconfig",
+    requires = { "kabouzeid/nvim-lspinstall" },
     config = function()
       require "core.lspconfig"
-    end
+    end,
   }
 
   -- Tree-Sitter
@@ -46,7 +47,7 @@ return require('packer').startup(function()
   use { "kyazdani42/nvim-tree.lua" }
 
   -- Comments
-  use { 
+  use {
     "terrortylor/nvim-comment",
     event = "BufRead",
     config = function()

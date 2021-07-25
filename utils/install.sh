@@ -8,7 +8,7 @@ packer_location="$pennyvim_location/site/pack/packer/start/packer.nvim"
 
 # Files
 init_lua_location="$pennyvim_location/pvim/init.lua"
-config_lua_location="$pennyvim_location/pvim/utils/config-example.lua"
+config_lua_location="$pennyvim_location/pvim/utils/config.lua"
 bin_location="$pennyvim_location/pvim/bin/pvim"
 
 install_packer() {
@@ -35,10 +35,18 @@ install_config() {
     +'au User PackerComplete sleep 100m | qall' \
     +PackerSync
 
-  echo 'Install complete'
+  echo ""
+  echo "   +----------------------+"
+  echo "   |   Install complete   |"
+  echo "   +----------------------+"
+  echo ""
 }
 
-echo 'Installing PennyVim'
+echo ""
+echo "   +-------------------------+"
+echo "   |   Installing PennyVim   |"
+echo "   +-------------------------+"
+echo ""
 
 case "$@" in
   *--reinstall*)
@@ -77,3 +85,12 @@ else
   install_config
 fi
 
+echo ""
+echo "   +--------------------------------------------------------------------------------------------------------+"
+echo "   |   Example configuration added in $config_lua_location. Edit this file to make your own configuration   |"
+echo "   +--------------------------------------------------------------------------------------------------------+"
+echo ""
+echo "   +---------------------------------------------------------------------------+"
+echo "   |   Install language servers (LSP) using the command ':LspInstall <lang>'   |"
+echo "   +---------------------------------------------------------------------------+"
+echo ""

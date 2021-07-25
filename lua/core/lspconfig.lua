@@ -1,12 +1,13 @@
-local nvim_lsp = require "lspconfig"
-
-local servers = { "tsserver", "ccls", "html", "texlab" }
-
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup{}
-end
-
+local lspi = require "lspinstall"
 local utils = require "utils"
+
+lspi.setup()
+
+local installed_servers = lspi.installed_servers()
+
+for _, server in pairs(installed_servers) do
+  require "lspconfig"[server].setup{}
+end
 
 local options = {
   silent = true,

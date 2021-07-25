@@ -1,5 +1,5 @@
 require 'nvim-treesitter.configs'.setup {
-  ensure_installed = {"c","cmake","latex","bibtex","lua","dockerfile","python","typescript","yaml","html","json","javascript"},
+  ensure_installed = pvim.lsp_servers,
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,

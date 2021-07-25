@@ -1,5 +1,3 @@
-CACHE_DIR = vim.fn.stdpath "cache"
-
 local default_options = {
   backup = false,
   clipboard = "unnamedplus",
