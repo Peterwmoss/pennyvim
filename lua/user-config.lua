@@ -4,7 +4,7 @@ if not status_ok then
   print(error)
 end
 
-local user_options = assert(UO)
+local user_options = UO
 
 -- Remap leader if defined
 if user_options.leader ~= nil then

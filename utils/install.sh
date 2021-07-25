@@ -25,7 +25,7 @@ install_config() {
   (command -v doas >/dev/null && doas cp "$bin_location" "/usr/local/bin") || (command -v sudo >/dev/null && sudo cp "$bin_location" "/usr/local/bin") 
 
   mkdir -p "$config_location"
-  cp "$config_lua_location" "$config_location/config-example.lua"
+  cp "$config_lua_location" "$config_location/config.lua"
 
   nvim -u "$init_lua_location" --cmd "set runtimepath+=$git_location" --headless \
     +'au User PackerComplete sleep 100m | qall' \
@@ -50,8 +50,12 @@ echo ""
 
 case "$@" in
   *--reinstall*)
-    echo '!!REINSTALL!! Removing all current config due to reinstall...'
+    echo "   +--------------------------------------------------+"
+    echo "   |                  !!REINSTALL!!                   |"
+    echo "   |   Removing all current config due to reinstall   |"
+    echo "   +--------------------------------------------------+"
 
+    echo ""
     echo "5..."
     sleep 1
     echo "4..."
@@ -62,6 +66,7 @@ case "$@" in
     sleep 1
     echo "1..."
     sleep 1
+    echo ""
 
     echo "Removing $pennyvim_location"
     rm -rf "$pennyvim_location"
