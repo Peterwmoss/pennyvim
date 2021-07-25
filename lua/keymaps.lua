@@ -6,11 +6,15 @@ local options = {
   vnoremap = { noremap = true, silent = true },
 }
 
-if pvim.leader == " " or pvim.leader == "space" then
-  vim.g.mapleader = " "
-else
-  vim.g.mapleader = pvim.leader
+function Set_leader(leader)
+  if leader == " " or leader == "space" then
+    vim.g.mapleader = " "
+  else
+    vim.g.mapleader = leader
+  end
 end
+
+Set_leader(pvim.leader)
 
 local keybinds = {
   n_mode = {

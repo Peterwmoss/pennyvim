@@ -13,8 +13,8 @@ require "settings"
 
 require "plugins"
 
-require "user-config"
-
 -- Colorscheme loaded after plugins to not break new installs
 vim.g.colors_name = pvim.colorscheme
 vim.cmd("colorscheme " .. pvim.colorscheme)
+
+require "user-config"
