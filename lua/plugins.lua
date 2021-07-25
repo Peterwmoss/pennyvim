@@ -8,6 +8,7 @@ return require('packer').startup(function()
   use { "sainnhe/gruvbox-material" }
   use { "glepnir/zephyr-nvim" }
   use { "christianchiarulli/nvcode-color-schemes.vim" }
+  use { "sainnhe/edge" }
 
   -- LSP
   use {
@@ -71,6 +72,18 @@ return require('packer').startup(function()
     "hrsh7th/nvim-compe",
     config = function()
       require("core.compe").setup()
+    end,
+  }
+
+  -- Git signs to the left
+  use {
+    "lewis6991/gitsigns.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim"
+    },
+    config = function()
+      require('gitsigns').setup()
     end
   }
+
 end)

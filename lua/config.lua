@@ -1,5 +1,5 @@
 pvim = {
   leader = "space",
-  colorscheme = "zephyr",
+  colorscheme = "edge",
   plugins = {},
 }

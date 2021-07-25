@@ -37,15 +37,122 @@ DiagnosticInfo = diagnostic.get_diagnostic_info
 -- LSP
 GetLspClient = lspclient.get_lsp_client
 
--- built-in condition
 local condition = require('galaxyline.condition')
-
--- built-in theme
 local colors = require('galaxyline.theme').default
 
-require('galaxyline').section.left[1]= {
+local gl = require "galaxyline"
+local gls = gl.section
+
+gls.left[1] = {
+  ViMode = {
+    provider = function()
+      -- auto change color according the vim mode
+      local mode_color = {n = colors.red, i = colors.green,v=colors.blue,
+                          [''] = colors.blue,V=colors.blue,
+                          c = colors.magenta,no = colors.red,s = colors.orange,
+                          S=colors.orange,[''] = colors.orange,
+                          ic = colors.yellow,R = colors.violet,Rv = colors.violet,
+                          cv = colors.red,ce=colors.red, r = colors.cyan,
+                          rm = colors.cyan, ['r?'] = colors.cyan,
+                          ['!']  = colors.red,t = colors.red}
+      vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()])
+      return '  '
+    end,
+    highlight = {colors.red, colors.bg,"bold"},
+  },
+}
+
+gls.left[2] = {
   FileName = {
     provider = FileName,
-    highlight = {colors.green,colors.purple},
+    icon = " ",
+    highlight = {colors.fg,colors.bg},
   }
+}
+
+gls.left[3] = {
+  GitBranch = {
+    provider = GitBranch,
+    icon = " ",
+    condition = condition.check_git_workspace,
+    separator = " ",
+    separator_highlight = { "NONE", colors.bg },
+    highlight = { colors.cyan, colors.bg },
+  },
+}
+
+gls.left[4] = {
+  DiffAdd = {
+    provider = DiffAdd,
+    icon = " ",
+    highlight = {colors.green,colors.bg},
+  }
+}
+
+gls.left[5] = {
+  DiffModified = {
+    provider = DiffModified,
+    icon = " ",
+    highlight = {colors.blue,colors.bg},
+  }
+}
+
+gls.left[6] = {
+  DiffRemove = {
+    provider = DiffRemove,
+    icon = " ",
+    highlight = {colors.red,colors.bg},
+  }
+}
+
+gls.right[1] = {
+  ShowLspClient = {
+    provider = GetLspClient,
+    condition = function()
+      local tbl = { ["dashboard"] = true, [" "] = true }
+      if tbl[vim.bo.filetype] then
+        return false
+      end
+      return true
+    end,
+    icon = "力",
+    highlight = { colors.orange, colors.bg },
+  },
+}
+
+gls.right[2] = {
+  FileEncode = {
+    provider = FileEncode,
+    condition = condition.hide_in_width,
+    separator = " ",
+    icon = "",
+    separator_highlight = { "NONE", colors.bg },
+    highlight = { colors.red, colors.bg },
+  },
+}
+
+gls.right[3] = {
+  FileIcon = {
+    provider = FileIcon,
+    separator = " ",
+    separator_highlight = { "NONE", colors.bg },
+    highlight = { colors.red, colors.bg },
+  }
+}
+
+gls.right[4] = {
+  BufferType = {
+    provider = FileTypeName,
+    condition = condition.hide_in_width,
+    highlight = { colors.red, colors.bg },
+  },
+}
+
+gls.right[5] = {
+  ScrollBar = {
+    provider = ScrollBar,
+    separator = " ",
+    separator_highlight = { "NONE", colors.bg },
+    highlight = { colors.cyan, colors.bg },
+  },
 }
