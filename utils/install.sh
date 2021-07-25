@@ -21,12 +21,15 @@ install_config() {
 
   git clone https://github.com/Peterkmoss/pennyvim.git "$git_location"
 
+
   # Install bin / alias
+  echo 'Copying executable to /usr/local/bin'
   (command -v doas >/dev/null && doas cp "$bin_location" "/usr/local/bin") || (command -v sudo >/dev/null && sudo cp "$bin_location" "/usr/local/bin") 
 
-  mkdir -p "$config_location"
-  cp "$config_lua_location" "$config_location/config.lua"
+  mkdir -vp "$config_location"
+  cp -v "$config_lua_location" "$config_location/config.lua"
 
+  echo 'Installing built in plugins'
   nvim -u "$init_lua_location" --cmd "set runtimepath+=$git_location" --headless \
     +'au User PackerComplete sleep 100m | qall' \
     +PackerInstall
