@@ -31,7 +31,6 @@ return require('packer').startup(function()
     "folke/which-key.nvim",
     config = function()
       require "core.which-key".setup()
-      echo "Which key loaded"
     end,
   }
 
@@ -65,5 +64,13 @@ return require('packer').startup(function()
       require "core.galaxyline"
     end,
     event = "BufWinEnter",
+  }
+
+  -- Autocomplete
+  use {
+    "hrsh7th/nvim-compe",
+    config = function()
+      require("core.compe").setup()
+    end
   }
 end)
