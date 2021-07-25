@@ -91,9 +91,9 @@ else
 fi
 
 echo ""
-echo "   +--------------------------------------------------------------------------------------------------------+"
-echo "   |   Example configuration added in $config_lua_location. Edit this file to make your own configuration   |"
-echo "   +--------------------------------------------------------------------------------------------------------+"
+echo "   +-------------------------------------------------------------------------------------------------------------+"
+echo "   |   Example configuration added to ~/.config/pvim/config.lua. Edit this file to make your own configuration   |"
+echo "   +-------------------------------------------------------------------------------------------------------------+"
 echo ""
 echo "   +---------------------------------------------------------------------------+"
 echo "   |   Install language servers (LSP) using the command ':LspInstall <lang>'   |"
