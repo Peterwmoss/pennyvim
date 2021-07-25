@@ -26,13 +26,15 @@ install_config() {
   mkdir -vp $pennyvim_location
 
   echo ""
-  echo "Cloning PennyVim config..."
+  echo "   +-----------------------------+"
+  echo "   |   Cloning PennyVim config   |"
+  echo "   +-----------------------------+"
   echo ""
-
   git clone https://github.com/Peterkmoss/pennyvim.git "$git_location"
 
 
   # Install bin / alias
+  echo ""
   echo 'Copying executable to /usr/local/bin'
   (command -v doas >/dev/null && doas cp "$bin_location" "/usr/local/bin") || (command -v sudo >/dev/null && sudo cp "$bin_location" "/usr/local/bin") 
 
@@ -40,11 +42,10 @@ install_config() {
   mkdir -vp "$config_location"
   echo ""
   cp -v "$config_lua_location" "$config_location/config.lua"
-  echo ""
 
   echo ""
   echo "Installing built in plugins"
-  echo ""
+
   nvim -u "$init_lua_location" --cmd "set runtimepath+=$git_location" --headless \
     +'au User PackerComplete sleep 100m | qall' \
     +PackerInstall
@@ -57,17 +58,16 @@ install_config() {
   echo "   +----------------------+"
   echo "   |   Install complete   |"
   echo "   +----------------------+"
-  echo ""
 }
 
 echo ""
 echo "   +-------------------------+"
 echo "   |   Installing PennyVim   |"
 echo "   +-------------------------+"
-echo ""
 
 case "$@" in
   *--reinstall*)
+    echo ""
     echo "   +--------------------------------------------------+"
     echo "   |                  !!REINSTALL!!                   |"
     echo "   |   Removing all current config due to reinstall   |"
@@ -84,11 +84,12 @@ case "$@" in
     sleep 1
     echo "1..."
     sleep 1
-    echo ""
 
+    echo ""
     echo "Removing $pennyvim_location"
     rm -rf "$pennyvim_location"
 
+    echo ""
     echo "Removing $config_location"
     rm -rf "$config_location"
     ;;
@@ -97,12 +98,14 @@ esac
 [ -d "$pennyvim_location" ] && echo 'PennyVim already installed' && exit
 
 if [ -e "$packer_location" ]; then
+  echo ""
 	echo 'packer is already installed... skipping'
 else
 	install_packer
 fi
 
 if [ -e "$init_lua_location" ]; then
+  echo ""
   echo 'PennyVim already installed. To reinstall provide the --reinstall option'
 else
   install_config
