@@ -5,10 +5,12 @@ vim.cmd [[
   set runtimepath^=~/.config/pvim
 ]]
 
+require "config"
+require "keymaps"
+require "settings"
+
 require "plugins"
 
-require "lsp.treesitter"
-require "lsp.lspconfig"
-
-require "config"
-require "settings"
+-- Colorscheme loaded after plugins to not break new installs
+vim.g.colors_name = pvim.colorscheme
+vim.cmd("colorscheme " .. pvim.colorscheme)
