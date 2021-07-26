@@ -50,6 +50,8 @@ cd pennyvim
 
 ## Keymappings
 
+Default leader key (prefix key): `<space>`
+
 ### Window Switching
 
 * `<C-[h,j,k,l]>`: `<C-w>[h,j,k,l]`
