@@ -102,6 +102,10 @@ case "$@" in
     echo ""
     echo "Removing $pennyvim_location"
     rm -rf "$pennyvim_location"
+
+    echo ""
+    echo "Removing installed plugins from $config_location/plugin"
+    rm -rf "$config_location/plugin"
     ;;
 esac
 

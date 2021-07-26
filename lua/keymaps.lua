@@ -35,8 +35,6 @@ utils.add_keymap_normal(options.nnoremap, mappings["n_mode"])
 utils.add_keymap_insert(options.inoremap, mappings["i_mode"])
 utils.add_keymap_visual(options.inoremap, mappings["v_mode"])
 
-for _, mapping in pairs(pvim.custom_mappings) do
-  local mode = mapping[0]
-  local options = mapping[3]
-  vim.api.nvim_set_keymap(mode, mapping[1], mapping[2], options)
+for _, mapping in ipairs(pvim.custom_mappings) do
+  vim.api.nvim_set_keymap(mapping.mode, mapping.comb, mapping.mapping, mapping.options)
 end
