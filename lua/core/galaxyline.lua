@@ -1,3 +1,8 @@
+local ok, gl = pcall(require, "galaxyline")
+
+if not ok then
+  return
+end
 -- source provider function
 local diagnostic = require('galaxyline.provider_diagnostic')
 local vcs = require('galaxyline.provider_vcs')
