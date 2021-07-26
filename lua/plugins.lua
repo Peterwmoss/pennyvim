@@ -31,12 +31,12 @@ return {
   },
 
   -- Autopairs
-  -- {
-  --   "windwp/nvim-autopairs",
-  --   config = function()
-  --     require "nvim-autopairs".setup({check_ts = true})
-  --   end
-  -- },
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require "nvim-autopairs".setup()
+    end
+  },
 
   { "kyazdani42/nvim-web-devicons" },
 
