@@ -52,17 +52,17 @@ cd pennyvim
 
 ### Window Switching
 
-* `<C-[h,j,k,l]> = <C-w>[h,j,k,l]`
+* `<C-[h,j,k,l]>`: `<C-w>[h,j,k,l]`
 
 ### Buffer Switching
 
-* `<tab> =` next buffer
-* `<s-tab> =` previous buffer
+* `<tab>`: next buffer
+* `<s-tab>`: previous buffer
 
 ### Indenting
 
-* `< = <gv`
-* `> = >gv`
+* `<`: `<gv`
+* `>`: `>gv`
 
 ## Why this project?
 
