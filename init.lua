@@ -14,10 +14,13 @@ vim.cmd [[
 ]]
 
 require "config"
+require "settings"
 
 require "user-config"
 
-require "settings"
+for k, v in pairs(pvim.custom_settings) do
+  vim.opt[k] = v
+end
 
 require "keymaps"
 require "autocommands"

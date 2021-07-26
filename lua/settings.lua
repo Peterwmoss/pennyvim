@@ -41,7 +41,3 @@ local default_options = {
 for k, v in pairs(default_options) do
   vim.opt[k] = v
 end
-
-for k, v in pairs(pvim.custom_settings) do
-  vim.opt[k] = v
-end
