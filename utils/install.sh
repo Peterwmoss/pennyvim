@@ -48,7 +48,8 @@ install_config() {
   echo ""
   echo "Copying example config"
   echo ""
-  mkdir -vp "$config_location"
+  echo "Creating directory ~/.config/pvim (unless already existing)"
+  mkdir -p "$config_location"
   echo ""
   cp -iv "$config_lua_location" "$config_location/config.lua"
 
