@@ -6,17 +6,13 @@ local options = {
   vnoremap = { noremap = true, silent = true },
 }
 
-function Set_leader(leader)
-  if leader == " " or leader == "space" then
-    vim.g.mapleader = " "
-  else
-    vim.g.mapleader = leader
-  end
+if pvim.leader == " " or pvim.leader == "space" then
+  vim.g.mapleader = " "
+else
+  vim.g.mapleader = pvim.leader
 end
 
-Set_leader(pvim.leader)
-
-local keybinds = {
+local mappings = {
   n_mode = {
     -- Window switching
     { "<C-h>", "<C-w>h" },
@@ -24,14 +20,8 @@ local keybinds = {
     { "<C-k>", "<C-w>k" },
     { "<C-l>", "<C-w>l" },
 
-    { "<leader>w", ":w<CR>" },
-    { "<leader>q", ":q<CR>" },
-
     { "<tab>", ":bnext<CR>" },
     { "<s-tab>", ":bprev<CR>" },
-
-    { ",", ";" },
-    { ";", "," },
   },
   i_mode = {
   },
@@ -41,12 +31,12 @@ local keybinds = {
   },
 }
 
-utils.add_keymap_normal(options.nnoremap, keybinds["n_mode"])
-utils.add_keymap_insert(options.inoremap, keybinds["i_mode"])
-utils.add_keymap_visual(options.inoremap, keybinds["v_mode"])
+utils.add_keymap_normal(options.nnoremap, mappings["n_mode"])
+utils.add_keymap_insert(options.inoremap, mappings["i_mode"])
+utils.add_keymap_visual(options.inoremap, mappings["v_mode"])
 
-for _, keymap in pairs(pvim.custom_mappings) do
-  local mode = keymap[0]
-  local options = keymap[3]
-  vim.api.nvim_set_keymap(mode, keymap[1], keymap[2], options)
+for _, mapping in pairs(pvim.custom_mappings) do
+  local mode = mapping[0]
+  local options = mapping[3]
+  vim.api.nvim_set_keymap(mode, mapping[1], mapping[2], options)
 end

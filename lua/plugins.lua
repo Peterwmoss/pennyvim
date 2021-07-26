@@ -2,9 +2,6 @@ return {
   { "wbthomason/packer.nvim" },
 
   -- Colorschemes
-  { "sainnhe/gruvbox-material" },
-  { "glepnir/zephyr-nvim" },
-  { "christianchiarulli/nvcode-color-schemes.vim" },
   { "sainnhe/edge" },
 
   -- LSP
