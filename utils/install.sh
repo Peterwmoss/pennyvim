@@ -54,7 +54,7 @@ install_config() {
   echo ""
   mkdir -vp "$config_location"
   echo ""
-  cp -v "$config_lua_location" "$config_location/config.lua"
+  cp -iv "$config_lua_location" "$config_location/config.lua"
 
   echo ""
   echo "Installing built in plugins"
@@ -85,26 +85,26 @@ echo "   +-------------------------+"
 case "$@" in
   *--reinstall*)
     echo ""
-    echo "   +--------------------------------------------------+"
-    echo "   |                  !!REINSTALL!!                   |"
-    echo "   |   Removing ALL current config due to reinstall   |"
-    echo "   +--------------------------------------------------+"
+    echo "   +-----------------------------------------------+"
+    echo "   |                 !!REINSTALL!!                 |"
+    echo "   |   Removing current install due to reinstall   |"
+    echo "   +-----------------------------------------------+"
 
     echo ""
-    echo "3..."
+    echo "3... (use CTRL-c to cancel)"
     sleep 1
-    echo "2..."
+    echo "2... (use CTRL-c to cancel)"
     sleep 1
-    echo "1..."
+    echo "1... (use CTRL-c to cancel)"
     sleep 1
 
     echo ""
-    echo "Removing $pennyvim_location"
-    rm -rf "$pennyvim_location"
+    echo "Removing $git_location"
+    rm -rf "$git_location"
 
     echo ""
-    echo "Removing $config_location"
-    rm -rf "$config_location"
+    echo "Removing $packer_location"
+    rm -rf "$packer_location"
     ;;
 esac
 
@@ -117,7 +117,14 @@ case "$@" in
     testing=1
 esac
 
-[ -d "$pennyvim_location" ] && echo 'PennyVim already installed' && exit
+if [ -d "$pennyvim_location" ]; then
+    echo ""
+    echo "   +---------------------------------------------+"
+    echo "   |          PennyVim aready installed          |"
+    echo "   |   Use the '--reinstall' flag to reinstall   |"
+    echo "   +---------------------------------------------+"
+    exit
+fi
 
 if [ -e "$packer_location" ]; then
   echo ""
@@ -126,20 +133,13 @@ else
 	install_packer
 fi
 
-if [ -e "$init_lua_location" ]; then
-  echo ""
-  echo 'PennyVim already installed. To reinstall provide the --reinstall option'
-  exit
-else
-  install_config
-fi
+install_config
 
 echo ""
-echo "   +-------------------------------------------------------------------------------------------------------------+"
-echo "   |   Example configuration added to ~/.config/pvim/config.lua. Edit this file to make your own configuration   |"
-echo "   +-------------------------------------------------------------------------------------------------------------+"
+echo "   +--------------------------------------------------------------------------------------------------------------+"
+echo "   |   Example configuration added to ~/.config/pvim/config.lua. Edit this file to make your own configuration.   |"
+echo "   +--------------------------------------------------------------------------------------------------------------+"
 echo ""
 echo "   +---------------------------------------------------------------------------+"
 echo "   |   Install language servers (LSP) using the command ':LspInstall <lang>'   |"
 echo "   +---------------------------------------------------------------------------+"
-echo ""
