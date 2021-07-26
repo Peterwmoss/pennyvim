@@ -33,11 +33,14 @@ local default_options = {
   signcolumn = "yes",
   wrap = true,
   linebreak = true,
-  spelllang = { "da", "en_us" },
   viewoptions = { "folds", "options", "cursor" },
   scrolloff = 8,
 }
 
 for k, v in pairs(default_options) do
+  vim.opt[k] = v
+end
+
+for k, v in pairs(pvim.custom_settings) do
   vim.opt[k] = v
 end

@@ -14,9 +14,10 @@ vim.cmd [[
 ]]
 
 require "config"
-require "settings"
 
 require "user-config"
+
+require "settings"
 
 require "keymaps"
 require "autocommands"

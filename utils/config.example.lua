@@ -16,3 +16,7 @@ pvim.custom_mappings = {
   -- options have the format: { silent = <boolean>, expr = <boolean>, noremap = <boolean> }
   -- Mode have the format: "n" (normal), "i" (insert), "v" (visual), "x" (visual block)
 }
+
+pvim.custom_settings = {
+  -- option = value,
+}
