@@ -2,7 +2,7 @@
 
 ![license](https://img.shields.io/badge/license-GPL--3.0-orange)
 ![issues](https://img.shields.io/github/issues-raw/Peterkmoss/pennyvim)
-![commits](https://img.shields.io/github/commit-activity/w/Peterkmoss/pennyvim)
+![commits](https://img.shields.io/github/last-commit/Peterkmoss/pennyvim)
 ![release](https://img.shields.io/github/v/release/Peterkmoss/pennyvim?color=green)
 ---
 
