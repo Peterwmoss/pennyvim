@@ -1,8 +1,6 @@
 local lspi = require "lspinstall"
 local utils = require "utils"
 
-lspi.setup()
-
 local installed_servers = lspi.installed_servers()
 
 for _, server in pairs(installed_servers) do

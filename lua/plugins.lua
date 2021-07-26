@@ -7,7 +7,12 @@ return {
   -- LSP
   {
     "neovim/nvim-lspconfig",
-    requires = { "kabouzeid/nvim-lspinstall" },
+    requires = { 
+      "kabouzeid/nvim-lspinstall",
+      config = function()
+        require "lspinstall".setup()
+      end
+    },
     config = function()
       require "core.lspconfig"
     end,
