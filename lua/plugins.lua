@@ -15,7 +15,7 @@ return {
 
   -- Tree-Sitter
   { 
-    "nvim-treesitter/nvim-treesitter", 
+    "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     config = function()
       require "core.treesitter"
@@ -33,7 +33,9 @@ return {
   -- Autopairs
   {
     "windwp/nvim-autopairs",
-    config = function() require "nvim-autopairs".setup() end
+    config = function() 
+      require "nvim-autopairs".setup({check_ts = true})
+    end
   },
 
   { "kyazdani42/nvim-web-devicons" },
