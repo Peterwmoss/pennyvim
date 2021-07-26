@@ -64,13 +64,13 @@ install_config() {
     --cmd "set runtimepath+=$git_location" \
     --headless \
 		+'autocmd User PackerComplete sleep 100m | qall' \
-    +PackerSync
+    +PackerInstall
 
   nvim -u $init_lua_location \
     --cmd "set runtimepath+=$git_location" \
     --headless \
 		+'autocmd User PackerComplete sleep 100m | qall' \
-    +PackerInstall
+    +PackerSync
 
   echo ""
   echo "   +----------------------+"
