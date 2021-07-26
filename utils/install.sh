@@ -24,11 +24,6 @@ install_packer() {
 }
 
 install_config() {
-
-  echo ""
-  echo "Creating directory ~/.local/share/pennyvim"
-  mkdir -p $pennyvim_location
-
   if [[ -v testing ]]; then
     echo ""
     echo "   +-------------------------------------+"
@@ -104,7 +99,7 @@ case "$@" in
     rm -rf "$pennyvim_location"
 
     echo ""
-    echo "Removing installed plugins from $config_location/plugin"
+    echo "Removing compiled plugin file from $config_location/plugin"
     rm -rf "$config_location/plugin"
     ;;
 esac
@@ -126,6 +121,10 @@ if [ -d "$git_location" ]; then
     echo "   +---------------------------------------------+"
     exit
 fi
+
+echo ""
+echo "Creating directory ~/.local/share/pennyvim"
+mkdir -p $pennyvim_location
 
 if [ -e "$packer_location" ]; then
   echo ""
