@@ -26,7 +26,8 @@ install_packer() {
 install_config() {
 
   echo ""
-  mkdir -vp $pennyvim_location
+  echo "Creating directory ~/.local/share/pennyvim"
+  mkdir -p $pennyvim_location
 
   if [[ -v testing ]]; then
     echo ""
@@ -63,13 +64,13 @@ install_config() {
     --cmd "set runtimepath+=$git_location" \
     --headless \
 		+'autocmd User PackerComplete sleep 100m | qall' \
-    +PackerInstall
+    +PackerInstall >/dev/null
 
   nvim -u $init_lua_location \
     --cmd "set runtimepath+=$git_location" \
     --headless \
 		+'autocmd User PackerComplete sleep 100m | qall' \
-    +PackerSync
+    +PackerSync >/dev/null
 
   echo ""
   echo "   +----------------------+"
