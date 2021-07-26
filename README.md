@@ -9,22 +9,13 @@ It's inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim).
 * `neovim` version `0.5` or above.
 * `git`
 
-
-### Optional
-
-* `node` and `npm`
-
 ## Install
 
-```sh
-git clone https://github.com/Peterkmoss/pennyvim.git
-cd pennyvim
-./utils/install.sh
-```
+`sh <(curl -s https://raw.githubusercontent.com/Peterkmoss/pennyvim/dev/utils/install.sh)`
 
 ## Usage
 
-`$ pvim`
+Use the `pvim` command to launch PennyVim.
 
 ## Features
 

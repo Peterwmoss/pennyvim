@@ -1,16 +1,11 @@
--- Taken from https://github.com/ChristianChiarulli/LunarVim/blob/c1b0c6f065591fb2259f37d35cd11dbded86edf9/lua/plugin-loader.lua
+-- Mostly taken from https://github.com/ChristianChiarulli/LunarVim/blob/c1b0c6f065591fb2259f37d35cd11dbded86edf9/lua/plugin-loader.lua
 
 local plugin_loader = {}
 
 function plugin_loader:init()
   local execute = vim.api.nvim_command
-  local fn = vim.fn
 
-  local install_path = "~/.local/share/pennyvim/site/pack/packer/start/packer.nvim"
-  if fn.empty(fn.glob(install_path)) > 0 then
-    execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-    execute "packadd packer.nvim"
-  end
+  execute "packadd packer.nvim"
 
   local packer_ok, packer = pcall(require, "packer")
   if not packer_ok then
