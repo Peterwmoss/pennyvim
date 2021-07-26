@@ -35,6 +35,7 @@ local default_options = {
   linebreak = true,
   viewoptions = { "folds", "options", "cursor" },
   scrolloff = 8,
+  spell = false,
 }
 
 for k, v in pairs(default_options) do
