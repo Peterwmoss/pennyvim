@@ -99,12 +99,8 @@ case "$@" in
     sleep 1
 
     echo ""
-    echo "Removing $git_location"
-    rm -rf "$git_location"
-
-    echo ""
-    echo "Removing $packer_location"
-    rm -rf "$packer_location"
+    echo "Removing $pennyvim_location"
+    rm -rf "$pennyvim_location"
     ;;
 esac
 
