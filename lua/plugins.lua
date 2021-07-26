@@ -5,13 +5,13 @@ return {
   { "sainnhe/edge" },
 
   -- LSP
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   requires = { "kabouzeid/nvim-lspinstall" }
-  --   config = function()
-  --     require "core.lspconfig"
-  --   end,
-  -- },
+  {
+    "neovim/nvim-lspconfig",
+    requires = { "kabouzeid/nvim-lspinstall" },
+    config = function()
+      require "core.lspconfig"
+    end,
+  },
 
   -- Tree-Sitter
   { 
