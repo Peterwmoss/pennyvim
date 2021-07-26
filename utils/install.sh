@@ -117,7 +117,7 @@ case "$@" in
     testing=1
 esac
 
-if [ -d "$pennyvim_location" ]; then
+if [ -d "$git_location" ]; then
     echo ""
     echo "   +---------------------------------------------+"
     echo "   |          PennyVim aready installed          |"
