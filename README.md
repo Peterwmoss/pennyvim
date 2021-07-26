@@ -49,6 +49,10 @@ Use the `pvim` command to launch PennyVim.
 
 Default leader key (prefix key): `<space>`
 
+Pressing `space` while inside PennyVim will show `which-key` and all the available keymappings there.
+
+The ones without the leader-key are shown below.
+
 ### Window Switching
 
 * `<C-[h,j,k,l]>`: `<C-w>[h,j,k,l]`
@@ -68,3 +72,7 @@ Default leader key (prefix key): `<space>`
 I found myself having a hard time configuring native lsp for nvim, so decided to make this layer on top to help others not needing to do the same work.
 
 There are a few built-in plugins and keybinds that I find everyone should be using, but other than that I try to keep the pre-configured stuff to a minimum.
+
+## Contributing
+
+Please feel free to create a PR for any bugs or features you see fit. I'll be happy to take a look at it.
