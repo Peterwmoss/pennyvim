@@ -1,5 +1,11 @@
 # PennyVim
 
+![license](https://img.shields.io/badge/license-GPL--3.0-orange)
+![issues](https://img.shields.io/github/issues-raw/Peterkmoss/pennyvim)
+![commits](https://img.shields.io/github/commit-activity/w/Peterkmoss/pennyvim)
+![release](https://img.shields.io/github/v/release/Peterkmoss/pennyvim?color=green)
+---
+
 PennyVim (or `pvim`) is a minimal IDE-like layer on top of a pure [neovim](https://github.com/neovim/neovim) install.
 
 It's inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim).
