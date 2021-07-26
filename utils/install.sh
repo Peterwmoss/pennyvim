@@ -1,3 +1,6 @@
+set -o nounset # error when referencing undefined variable
+set -o errexit # exit when command fails
+
 # Directories
 pennyvim_location="$HOME/.local/share/pennyvim"
 config_location="$HOME/.config/pvim"
@@ -7,9 +10,9 @@ git_location="$pennyvim_location/pvim"
 packer_location="$pennyvim_location/site/pack/packer/start/packer.nvim"
 
 # Files
-init_lua_location="$pennyvim_location/pvim/init.lua"
-config_lua_location="$pennyvim_location/pvim/utils/config.example.lua"
-bin_location="$pennyvim_location/pvim/bin/pvim"
+init_lua_location="$git_location/init.lua"
+config_lua_location="$git_location/utils/config.example.lua"
+bin_location="$git_location/bin/pvim"
 
 install_packer() {
   echo ""
@@ -25,12 +28,20 @@ install_config() {
   echo ""
   mkdir -vp $pennyvim_location
 
-  echo ""
-  echo "   +-----------------------------+"
-  echo "   |   Cloning PennyVim config   |"
-  echo "   +-----------------------------+"
-  echo ""
-  git clone https://github.com/Peterkmoss/pennyvim.git "$git_location"
+  if [[ -v testing ]]; then
+    echo ""
+    echo "   +-------------------------------------+"
+    echo "   |   Copying config from current dir   |"
+    echo "   +-------------------------------------+"
+    cp -r "$(pwd)" $git_location
+  else
+    echo ""
+    echo "   +-----------------------------+"
+    echo "   |   Cloning PennyVim config   |"
+    echo "   +-----------------------------+"
+    echo ""
+    git clone https://github.com/Peterkmoss/pennyvim.git "$git_location"
+  fi
 
 
   # Install bin / alias
@@ -39,6 +50,8 @@ install_config() {
   (command -v doas >/dev/null && doas cp "$bin_location" "/usr/local/bin") || (command -v sudo >/dev/null && sudo cp "$bin_location" "/usr/local/bin") 
 
   echo ""
+  echo "Copying example config"
+  echo ""
   mkdir -vp "$config_location"
   echo ""
   cp -v "$config_lua_location" "$config_location/config.lua"
@@ -46,12 +59,16 @@ install_config() {
   echo ""
   echo "Installing built in plugins"
 
-  nvim -u "$init_lua_location" --cmd "set runtimepath+=$git_location" --headless \
-    +'au User PackerComplete sleep 100m | qall' \
+  nvim -u $init_lua_location \
+    --cmd "set runtimepath+=$git_location" \
+    --headless \
+		+'autocmd User PackerComplete sleep 100m | qall' \
     +PackerInstall
 
-  nvim -u "$init_lua_location" --cmd "set runtimepath+=$git_location" --headless \
-    +'au User PackerComplete sleep 100m | qall' \
+  nvim -u $init_lua_location \
+    --cmd "set runtimepath+=$git_location" \
+    --headless \
+		+'autocmd User PackerComplete sleep 100m | qall' \
     +PackerSync
 
   echo ""
@@ -70,14 +87,10 @@ case "$@" in
     echo ""
     echo "   +--------------------------------------------------+"
     echo "   |                  !!REINSTALL!!                   |"
-    echo "   |   Removing all current config due to reinstall   |"
+    echo "   |   Removing ALL current config due to reinstall   |"
     echo "   +--------------------------------------------------+"
 
     echo ""
-    echo "5..."
-    sleep 1
-    echo "4..."
-    sleep 1
     echo "3..."
     sleep 1
     echo "2..."
@@ -95,11 +108,20 @@ case "$@" in
     ;;
 esac
 
+case "$@" in
+  *--testing*)
+    echo ""
+    echo "   +--------------------------+"
+    echo "   |   Running test install   |"
+    echo "   +--------------------------+"
+    testing=1
+esac
+
 [ -d "$pennyvim_location" ] && echo 'PennyVim already installed' && exit
 
 if [ -e "$packer_location" ]; then
   echo ""
-	echo 'packer is already installed... skipping'
+	echo 'packer is already installed - skipping...'
 else
 	install_packer
 fi
@@ -107,6 +129,7 @@ fi
 if [ -e "$init_lua_location" ]; then
   echo ""
   echo 'PennyVim already installed. To reinstall provide the --reinstall option'
+  exit
 else
   install_config
 fi
