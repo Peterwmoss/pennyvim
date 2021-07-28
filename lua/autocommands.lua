@@ -16,4 +16,5 @@ local autocommands = {
   "BufWinEnter *.* silent! loadview",
 }
 
-create_augroup(autocommands, "MyGroup")
+create_augroup(autocommands, "DefaultGroup")
+create_augroup(pvim.custom_autocommands, "CustomGroup")

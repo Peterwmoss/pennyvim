@@ -20,3 +20,8 @@ pvim.custom_mappings = {
 pvim.custom_settings = {
   -- option = value,
 }
+
+pvim.custom_autocommands = {
+  -- "<vim default autocommand syntax>",
+  -- e.g. "BufRead,BufNewFile *.tex setlocal spell",
+}

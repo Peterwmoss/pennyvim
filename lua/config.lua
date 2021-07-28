@@ -8,4 +8,5 @@ pvim = {
   custom_plugins = {},
   custom_mappings = {},
   custom_settings = {},
+  custom_autocommands = {},
 }
