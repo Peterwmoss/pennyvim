@@ -15,17 +15,17 @@ module.config = function()
       ["c"] = { ":CommentToggle<CR>", "Comment" },
       ["d"] = { ":bdelete<CR>", "Delete Buffer" },
       ["e"] = { ":e<space>", "Edit file" },
-      ["f"] = { 
+      ["f"] = {
         name = "Find",
         f = { ":Telescope find_files<CR>", "Files" },
         g = { ":Telescope git_files<CR>", "Git Files" },
         b = { ":Telescope buffers<CR>", "Buffers" },
       },
-      ["g"] = { 
+      ["g"] = {
         name = "Git",
         b = { ":Telescope git_branches<CR>", "Checkout Branch" },
       },
-      ["l"] = { 
+      ["l"] = {
         name = "LSP",
         a = { ":lua vim.lsp.buf.code_action()<CR>", "Code Action" },
         d = { ":lua vim.lsp.buf.definition()<CR>", "Definition" },
@@ -34,7 +34,7 @@ module.config = function()
         r = { ":lua vim.lsp.buf.references()<CR>", "References" },
         R = { ":lua vim.lsp.buf.rename()<CR>", "Rename" },
       },
-      ["p"] = { 
+      ["p"] = {
         name = "Packer",
         s = { ":PackerSync<CR>", "Sync" },
         c = { ":PackerClean<CR>", "Clean" },
@@ -42,10 +42,15 @@ module.config = function()
         u = { ":PackerUpdate<CR>", "Update" },
       },
       ["q"] = { ":q<CR>", "Quit" },
-      ["s"] = { 
+      ["s"] = {
         name = "Split",
         h = { ":split<CR>", "Horizontal" },
         v = { ":vsplit<CR>", "Vertical" },
+      },
+      ["t"] = {
+        name = "Toggle",
+        s = { ":set spell!<CR>", "Spelling" },
+        h = { ":set hlsearch!<CR>", "Highlight search" },
       },
       ["w"] = { ":w!<CR>", "Save" },
     }
