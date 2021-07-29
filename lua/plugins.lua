@@ -39,9 +39,11 @@ return {
     end
   },
 
+  -- Icons
   { "kyazdani42/nvim-web-devicons" },
 
-  { "kyazdani42/nvim-tree.lua" },
+  -- Bufferline
+  { "romgrk/barbar.nvim" },
 
   -- Comments
   {

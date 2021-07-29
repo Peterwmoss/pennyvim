@@ -40,7 +40,7 @@ Use the `pvim` command to launch PennyVim.
 * [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) (better syntax highlighting - but can do a lot more)
 * [which-key.nvim](https://github.com/folke/which-key.nvim) (making keymappings and showing what mappings there are (and what they do))
 * [nvim-autopairs](https://github.com/windwp/nvim-autopairs) (making pairs for quotes, brackets, etc.)
-* [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) (file explorer tree)
+* [barbar.nvim](https://github.com/romgrk/barbar.nvim) (bufferline)
 * [nvim-web-dev-icons](https://github.com/kyazdani42/nvim-web-devicons) (icons in file explorer)
 * [nvim-comment](https://github.com/terrortylor/nvim-comment) (easy commenting)
 * [telescope](https://github.com/nvim-telescope/telescope.nvim) (finding files and a lot more)
