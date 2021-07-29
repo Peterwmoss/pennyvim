@@ -1,5 +1,3 @@
-CACHE_DIR = vim.fn.stdpath "cache"
-
 vim.cmd [[
   set packpath-=~/.config/nvim
   set packpath-=~/.config/nvim/after
@@ -12,6 +10,8 @@ vim.cmd [[
   set runtimepath+=~/.config/pvim
   set runtimepath^=~/.local/share/pennyvim/pvim/after
 ]]
+
+CACHE_DIR = vim.fn.stdpath "cache"
 
 require "config"
 require "settings"

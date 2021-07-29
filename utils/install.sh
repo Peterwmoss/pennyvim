@@ -1,3 +1,6 @@
+#!/bin/sh
+PVBRANCH="${PVBRANCH:-main}"
+
 set -o nounset # error when referencing undefined variable
 set -o errexit # exit when command fails
 
@@ -69,7 +72,7 @@ install_config() {
     echo "   |   Cloning PennyVim config   |"
     echo "   +-----------------------------+"
     echo ""
-    git clone https://github.com/Peterkmoss/pennyvim.git "$git_location"
+    git clone --branch "$PVBRANCH" https://github.com/Peterkmoss/pennyvim.git "$git_location"
   fi
 
 
@@ -144,6 +147,10 @@ case "$@" in
     echo ""
     echo "Removing compiled plugin file from $config_location/plugin"
     rm -rf "$config_location/plugin"
+
+    echo ""
+    echo "Removing cached data from $HOME/.cache/nvim"
+    rm -rf "$HOME/.cache/nvim"
     ;;
 esac
 
@@ -171,7 +178,7 @@ fi
 (command -v pip3 >/dev/null || (echo "\npip3 not installed. Please install before trying again" && exit))
 
 # Check for pynvim
-(pip3 list | grep pynvim >/dev/null && update_pynvim) || installpynvim
+(pip3 list | grep pynvim >/dev/null && update_pynvim) || install_pynvim
 
 install_config
 
