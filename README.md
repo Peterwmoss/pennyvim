@@ -14,10 +14,13 @@ It's inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim).
 
 * `neovim` version `0.5` or above.
 * `git`
+* `pip3`
 
 ## Install
 
-`sh <(curl -s https://raw.githubusercontent.com/Peterkmoss/pennyvim/dev/utils/install.sh)`
+```
+sh <(curl -s https://raw.githubusercontent.com/Peterkmoss/pennyvim/dev/utils/install.sh)
+```
 
 ## Usage
 
