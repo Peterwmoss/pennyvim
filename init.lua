@@ -11,8 +11,6 @@ vim.cmd [[
   set runtimepath^=~/.local/share/pennyvim/pvim/after
 ]]
 
-CACHE_DIR = vim.fn.stdpath "cache"
-
 require "config"
 require "settings"
 
