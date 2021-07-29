@@ -3,7 +3,9 @@ local plugin_loader = {}
 function plugin_loader:init()
   vim.api.nvim_command "packadd packer.nvim"
 
+  local packer = require "packer"
   local util = require "packer.util"
+
   packer.init {
     package_root = util.join_paths "~/.local/share/pennyvim/site/pack/",
     compile_path = util.join_paths("~/.config/pvim", "plugin", "packer_compiled.lua"),

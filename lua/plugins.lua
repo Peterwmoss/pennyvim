@@ -35,7 +35,7 @@ return {
   {
     "windwp/nvim-autopairs",
     config = function()
-      require "nvim-autopairs".setup()
+      require "core/autopairs"
     end
   },
 
