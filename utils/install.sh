@@ -92,17 +92,13 @@ install_config() {
   echo ""
   echo "Installing built in plugins"
 
-  nvim -u $init_lua_location \
+  echo ""
+  echo "Running ':PackerSync'"
+  (nvim -u $init_lua_location \
     --cmd "set runtimepath+=$git_location" \
     --headless \
-		+'autocmd User PackerComplete sleep 100m | qall' \
-    +PackerInstall
-
-  nvim -u $init_lua_location \
-    --cmd "set runtimepath+=$git_location" \
-    --headless \
-		+'autocmd User PackerComplete sleep 100m | qall' \
-    +PackerSync
+		+'autocmd User PackerComplete sleep 15 | qall' \
+    +PackerSync) >&/dev/null
 
   echo ""
   echo "   +----------------------+"

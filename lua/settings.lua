@@ -1,3 +1,5 @@
+CACHE_DIR = vim.fn.stdpath "cache"
+
 local default_options = {
   backup = false,
   clipboard = "unnamedplus",
@@ -18,7 +20,7 @@ local default_options = {
   swapfile = false,
   termguicolors = true,
   timeoutlen = 500,
-  undodir = "~/.config/pvim/undo",
+  undodir = CACHE_DIR .. "/undo",
   undofile = true,
   updatetime = 50,
   expandtab = true,
@@ -33,7 +35,7 @@ local default_options = {
   signcolumn = "yes",
   wrap = true,
   linebreak = true,
-  viewoptions = { "folds", "options", "cursor" },
+  viewoptions = { "folds", "cursor" },
   scrolloff = 8,
   spell = false,
 }
