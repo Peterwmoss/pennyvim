@@ -23,6 +23,39 @@ install_packer() {
   git clone https://github.com/wbthomason/packer.nvim "$packer_location"
 }
 
+install_pynvim() {
+	printf "Pynvim is not installed. Would you like to install pynvim (y/N)? "
+	read -r answer
+	if [ "$answer" != "${answer#[Yy]}" ]; then
+    echo ""
+    echo "   +-----------------------+"
+    echo "   |   Installing pynvim   |"
+    echo "   +-----------------------+"
+    echo ""
+    pip3 install --user pynvim
+  else
+    echo ""
+    echo "   +-----------------------------------------------+"
+    echo "   |         User aborted install process.         |"
+    echo "   |   Please install pynvim before installing..   |"
+    echo "   +-----------------------------------------------+"
+    exit
+  fi
+}
+
+update_pynvim() {
+	printf "Would you like to update pynvim (y/N)? "
+	read -r answer
+	if [ "$answer" != "${answer#[Yy]}" ]; then
+    echo ""
+    echo "   +---------------------+"
+    echo "   |   Updating pynvim   |"
+    echo "   +---------------------+"
+    echo ""
+    pip3 install -U --user pynvim
+  fi
+}
+
 install_config() {
   if [[ -v testing ]]; then
     echo ""
@@ -133,6 +166,12 @@ if [ -e "$packer_location" ]; then
 else
 	install_packer
 fi
+
+# Check for pip3
+(command -v pip3 >/dev/null || (echo "\npip3 not installed. Please install before trying again" && exit))
+
+# Check for pynvim
+(pip3 list | grep pynvim >/dev/null && update_pynvim) || installpynvim
 
 install_config
 
