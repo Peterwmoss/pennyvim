@@ -107,6 +107,15 @@ install_config() {
   echo "   +----------------------+"
 }
 
+case "$@" in
+  *--testing*)
+    echo ""
+    echo "   +--------------------------+"
+    echo "   |   Running test install   |"
+    echo "   +--------------------------+"
+    testing=1
+esac
+
 echo ""
 echo "   +-------------------------+"
 echo "   |   Installing PennyVim   |"
@@ -136,15 +145,6 @@ case "$@" in
     echo "Removing compiled plugin file from $config_location/plugin"
     rm -rf "$config_location/plugin"
     ;;
-esac
-
-case "$@" in
-  *--testing*)
-    echo ""
-    echo "   +--------------------------+"
-    echo "   |   Running test install   |"
-    echo "   +--------------------------+"
-    testing=1
 esac
 
 if [ -d "$git_location" ]; then
