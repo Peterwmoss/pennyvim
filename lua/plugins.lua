@@ -31,6 +31,14 @@ return {
     end,
   },
 
+  -- Autopairs
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require "nvim-autopairs".setup()
+    end
+  },
+
   -- Icons
   { "kyazdani42/nvim-web-devicons" },
 
