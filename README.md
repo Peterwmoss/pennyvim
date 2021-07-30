@@ -18,7 +18,7 @@ It's inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim).
 
 ## Install
 
-```
+``` shell
 sh <(curl -s https://raw.githubusercontent.com/Peterkmoss/pennyvim/dev/utils/install.sh)
 ```
 
