@@ -12,18 +12,21 @@ module.config = function()
       ["c"] = { ":CommentToggle<CR>", "Comment" },
     },
     mappings = {
+      ["b"] = { ":Telescope buffers<CR>", "Buffers" },
       ["c"] = { ":CommentToggle<CR>", "Comment" },
       ["d"] = { ":bdelete<CR>", "Delete Buffer" },
       ["e"] = { ":e<space>", "Edit file" },
-      ["f"] = {
-        name = "Find",
-        f = { ":Telescope find_files<CR>", "Files" },
-        g = { ":Telescope git_files<CR>", "Git Files" },
-        b = { ":Telescope buffers<CR>", "Buffers" },
-      },
+      ["f"] = { ":Telescope find_files<CR>", "Find Files" },
       ["g"] = {
         name = "Git",
         b = { ":Telescope git_branches<CR>", "Checkout Branch" },
+        B = { ":Gitsigns toggle_current_line_blame<CR>", "Blame current line" },
+        f = { ":Telescope git_files<CR>", "Git Files" },
+        ["r"] = {
+          name = "Reset",
+          b = { ":Gitsigns reset_buffer<CR>", "Buffer" },
+          h = { ":Gitsigns reset_hunk<CR>", "Hunk" },
+        },
       },
       ["l"] = {
         name = "LSP",
@@ -31,7 +34,7 @@ module.config = function()
         d = { ":lua vim.lsp.buf.definition()<CR>", "Definition" },
         D = { ":lua vim.lsp.buf.declaration()<CR>", "Declaration" },
         f = { ":lua vim.lsp.buf.formatting()<CR>", "Format" },
-        r = { ":lua vim.lsp.buf.references()<CR>", "References" },
+        r = { ":Telescope lsp_references<CR>", "References" },
         R = { ":lua vim.lsp.buf.rename()<CR>", "Rename" },
       },
       ["p"] = {
