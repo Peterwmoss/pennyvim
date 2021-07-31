@@ -9,4 +9,7 @@ pvim = {
   custom_mappings = {},
   custom_settings = {},
   custom_autocommands = {},
+  custom_init = {
+    dap = function() end,
+  },
 }

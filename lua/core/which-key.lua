@@ -12,9 +12,23 @@ module.config = function()
       ["c"] = { ":CommentToggle<CR>", "Comment" },
     },
     mappings = {
-      ["b"] = { ":Telescope buffers<CR>", "Buffers" },
+      ["b"] = {
+        name = "Buffers",
+        f = { ":Telescope buffers<CR>", "Buffers" },
+        d = { ":bdelete<CR>", "Delete Buffer" },
+      },
       ["c"] = { ":CommentToggle<CR>", "Comment" },
-      ["d"] = { ":bdelete<CR>", "Delete Buffer" },
+      ["d"] = {
+        name = "Debug",
+        t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+        c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+        d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+        i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
+        o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+        u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+        s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+        q = { "<cmd>lua require'dap'.stop()<cr>", "Quit" },
+      },
       ["e"] = { ":e<space>", "Edit file" },
       ["f"] = { ":Telescope find_files<CR>", "Find Files" },
       ["g"] = {

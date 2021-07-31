@@ -85,4 +85,19 @@ return {
       require('gitsigns').setup()
     end
   },
+
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      local breakpoint = {
+        text = "",
+        texthl = "LspDiagnosticsSignError",
+        linehl = "",
+        numhl = "",
+      }
+      vim.fn.sign_define("DapBreakpoint", breakpoint)
+
+      pvim.custom_init.dap()
+    end
+  },
 }
