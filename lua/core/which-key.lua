@@ -42,6 +42,7 @@ module.config = function()
           h = { ":Gitsigns reset_hunk<CR>", "Hunk" },
         },
       },
+      ["h"] = { ":Telescope help_tags<CR>", "Help" },
       ["l"] = {
         name = "LSP",
         a = { ":lua vim.lsp.buf.code_action()<CR>", "Code Action" },
