@@ -22,6 +22,6 @@ pvim.custom_autocommands = {
   -- e.g. "BufRead,BufNewFile *.tex setlocal spell",
 }
 
-pvim.custom_init.dap = {
-  -- Your dap init function
-}
+pvim.custom_init.dap = function()
+-- Your dap init function
+end

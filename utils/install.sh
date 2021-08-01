@@ -98,7 +98,7 @@ install_config() {
     --cmd "set runtimepath+=$git_location" \
     --headless \
 		+'autocmd User PackerComplete sleep 15 | qall' \
-    +PackerSync) >&/dev/null
+    +PackerSync)
 
   echo ""
   echo "   +----------------------+"
