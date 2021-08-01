@@ -47,6 +47,7 @@ Use the `pvim` command to launch PennyVim.
 * [nvim-compe](https://github.com/hrsh7th/nvim-compe) (autocomplete plugin)
 * [galaxyline.nvim](https://github.com/glepnir/galaxyline.nvim) (status bar)
 * [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) (vscode-like git diff to the left of the line numbers)
+* [nvim-dap](https://github.com/mfussenegger/nvim-dap) (debugging support)
 
 ## Keymappings
 
