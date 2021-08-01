@@ -14,7 +14,7 @@ return {
   },
 
   -- Tree-Sitter
-  { 
+  {
     "nvim-treesitter/nvim-treesitter",
     branch = "0.5-compat",
     run = ":TSUpdate",
@@ -54,11 +54,13 @@ return {
     end
   },
 
+  -- Finding files and documentation
   {
     "nvim-telescope/telescope.nvim",
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } }
   },
 
+  -- Statusline
   {
     "glepnir/galaxyline.nvim",
     config = function()
