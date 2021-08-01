@@ -1,9 +1,12 @@
-# PennyVim
+<center>
+<h1>PennyVim</h1>
 
 ![license](https://img.shields.io/badge/license-GPL--3.0-orange)
 ![issues](https://img.shields.io/github/issues-raw/Peterkmoss/pennyvim)
 ![commits](https://img.shields.io/github/last-commit/Peterkmoss/pennyvim)
 ![release](https://img.shields.io/github/v/release/Peterkmoss/pennyvim)
+
+</center>
 ---
 
 PennyVim (or `pvim`) is a minimal IDE-like layer on top of a pure [neovim](https://github.com/neovim/neovim) install.
