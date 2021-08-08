@@ -24,7 +24,7 @@ return {
   },
 
   -- Which-Key
-  { 
+  {
     "folke/which-key.nvim",
     config = function()
       require "core.which-key".setup()
@@ -96,14 +96,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     config = function()
-      local breakpoint = {
-        text = "",
-        texthl = "LspDiagnosticsSignError",
-        linehl = "",
-        numhl = "",
-      }
-      vim.fn.sign_define("DapBreakpoint", breakpoint)
-
+      require "core/dap"
       pvim.custom_init.dap()
     end
   },
