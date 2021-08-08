@@ -29,7 +29,6 @@ module.config = function()
         s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
         q = { "<cmd>lua require'dap'.stop()<cr>", "Quit" },
       },
-      ["e"] = { ":e<space>", "Edit file" },
       ["f"] = { ":Telescope find_files<CR>", "Find Files" },
       ["g"] = {
         name = "Git",
