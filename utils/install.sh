@@ -27,9 +27,14 @@ install_packer() {
 }
 
 install_pynvim() {
-	printf "Pynvim is not installed. Would you like to install pynvim (y/N)? "
-	read -r answer
-	if [ "$answer" != "${answer#[Yy]}" ]; then
+  if [[ -v yes ]]; then
+    pip3 install --user pynvim
+    return
+  fi
+
+  printf "Pynvim is not installed. Would you like to install pynvim (y/N)? "
+  read -r answer
+  if [ "$answer" != "${answer#[Yy]}" ]; then
     echo ""
     echo "   +-----------------------+"
     echo "   |   Installing pynvim   |"
@@ -47,9 +52,14 @@ install_pynvim() {
 }
 
 update_pynvim() {
-	printf "Would you like to update pynvim (y/N)? "
-	read -r answer
-	if [ "$answer" != "${answer#[Yy]}" ]; then
+  if [[ -v yes ]]; then
+    pip3 install -U --user pynvim
+    return
+  fi
+
+  printf "Would you like to update pynvim (y/N)? "
+  read -r answer
+  if [ "$answer" != "${answer#[Yy]}" ]; then
     echo ""
     echo "   +---------------------+"
     echo "   |   Updating pynvim   |"
@@ -92,7 +102,11 @@ install_config() {
   echo "Creating directory ~/.config/pvim (unless already existing)"
   mkdir -p "$config_location"
   echo ""
-  cp -iv "$config_lua_location" "$config_location/config.lua"
+  if [[ -v yes ]]; then
+    cp -v "$config_lua_location" "$config_location/config.lua"
+  else
+    cp -iv "$config_lua_location" "$config_location/config.lua"
+  fi
 
   echo ""
   echo "Installing built in plugins"
@@ -112,12 +126,23 @@ install_config() {
 }
 
 case "$@" in
+  *-y*)
+    yes=1
+    ;;
+
+  *--yes*)
+    yes=1
+    ;;
+esac
+
+case "$@" in
   *--testing*)
     echo ""
     echo "   +--------------------------+"
     echo "   |   Running test install   |"
     echo "   +--------------------------+"
     testing=1
+    ;;
 esac
 
 echo ""
@@ -191,3 +216,7 @@ echo ""
 echo "   +---------------------------------------------------------------------------+"
 echo "   |   Install language servers (LSP) using the command ':LspInstall <lang>'   |"
 echo "   +---------------------------------------------------------------------------+"
+echo ""
+echo "   +---------------------------------------------------------------------------------------------------------------------------------------+"
+echo "   |   At first start, TreeSitter will install languages, after which a restart of PennyVim is required for TreeSitter to work properly.   |"
+echo "   +---------------------------------------------------------------------------------------------------------------------------------------+"
