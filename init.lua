@@ -23,6 +23,7 @@ end
 require "keymaps"
 require "autocommands"
 require "commands"
+require "variables"
 
 local plugins = require "plugins"
 local plugin_loader = require("plugin-loader").init()

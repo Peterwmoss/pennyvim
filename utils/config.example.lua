@@ -22,6 +22,11 @@ pvim.custom_autocommands = {
   -- e.g. "BufRead,BufNewFile *.tex setlocal spell",
 }
 
+pvim.custom_variables = function()
+  -- Your custom variables. Will be loaded before plugins.
+  -- E.g. vim.<scope>.<variable> = <value>
+end
+
 pvim.custom_init.dap = function()
 -- Your dap init function
 end

@@ -12,4 +12,5 @@ pvim = {
   custom_init = {
     dap = function() end,
   },
+  custom_variables = function() end
 }
