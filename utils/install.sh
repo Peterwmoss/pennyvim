@@ -61,11 +61,16 @@ update_pynvim() {
 
 install_config() {
   if [[ -v testing ]]; then
-    echo ""
-    echo "   +-------------------------------------+"
-    echo "   |   Copying config from current dir   |"
-    echo "   +-------------------------------------+"
-    cp -r "$(pwd)" $git_location
+    if [[ ! -d $git_location ]]; then
+      echo ""
+      echo "   +----------------------------------------+"
+      echo "   |   Symlinking config from current dir   |"
+      echo "   +----------------------------------------+"
+      ln -sv "$(pwd)" $git_location
+    else
+      echo "Fatal: $git_location already exists..."
+      exit 1
+    fi
   else
     echo ""
     echo "   +-----------------------------+"
