@@ -20,8 +20,8 @@ local mappings = {
     { "<C-k>", "<C-w>k" },
     { "<C-l>", "<C-w>l" },
 
-    { "<tab>", ":bnext<CR>" },
-    { "<s-tab>", ":bprev<CR>" },
+    { "<tab>", ":BufferNext<CR>" },
+    { "<s-tab>", ":BufferPrevious<CR>" },
   },
   i_mode = {
   },

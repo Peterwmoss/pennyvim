@@ -43,7 +43,12 @@ return {
   { "kyazdani42/nvim-web-devicons" },
 
   -- Bufferline
-  { "romgrk/barbar.nvim" },
+  {
+    "romgrk/barbar.nvim",
+    config = function ()
+      require "core.barbar"
+    end
+  },
 
   -- Comments
   {
