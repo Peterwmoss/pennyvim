@@ -44,9 +44,9 @@ return {
 
   -- Bufferline
   {
-    "romgrk/barbar.nvim",
+    "akinsho/nvim-bufferline.lua",
     config = function ()
-      require "core.barbar"
+      require "core.bufferline"
     end
   },
 

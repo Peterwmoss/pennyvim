@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 PVBRANCH="${PVBRANCH:-main}"
 
 set -o nounset # error when referencing undefined variable
@@ -71,7 +71,7 @@ update_pynvim() {
 
 install_config() {
   if [[ -v testing ]]; then
-    if [[ ! -d $git_location ]]; then
+    if [ ! -d $git_location ]; then
       echo ""
       echo "   +----------------------------------------+"
       echo "   |   Symlinking config from current dir   |"
