@@ -94,7 +94,11 @@ install_config() {
   # Install bin / alias
   echo ""
   echo 'Copying executable to /usr/local/bin'
-  (command -v doas >/dev/null && doas cp "$bin_location" "/usr/local/bin") || (command -v sudo >/dev/null && sudo cp "$bin_location" "/usr/local/bin") 
+  if [ -d "/usr/local/bin" ]; then
+    (command -v doas >/dev/null && doas cp "$bin_location" "/usr/local/bin") || (command -v sudo >/dev/null && sudo cp "$bin_location" "/usr/local/bin") 
+  else
+    echo "Please ensure that you put the executable in a location which is in your PATH"
+  fi
 
   echo ""
   echo "Copying example config"
