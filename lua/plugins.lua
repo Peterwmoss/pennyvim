@@ -110,4 +110,7 @@ return {
       pvim.custom_init.dap()
     end
   },
+
+  -- Indent lines
+  { "lukas-reineke/indent-blankline.nvim" }
 }
