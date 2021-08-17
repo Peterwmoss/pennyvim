@@ -1,163 +1,126 @@
-local ok, gl = pcall(require, "galaxyline")
-
-if not ok then
-  return
-end
--- source provider function
-local diagnostic = require('galaxyline.provider_diagnostic')
-local vcs = require('galaxyline.provider_vcs')
-local fileinfo = require('galaxyline.provider_fileinfo')
-local extension = require('galaxyline.provider_extensions')
-local colors = require('galaxyline.colors')
-local buffer = require('galaxyline.provider_buffer')
-local whitespace = require('galaxyline.provider_whitespace')
-local lspclient = require('galaxyline.provider_lsp')
-
--- provider 
-BufferIcon  = buffer.get_buffer_type_icon
-BufferNumber = buffer.get_buffer_number
-FileTypeName = buffer.get_buffer_filetype
--- Git Provider
-GitBranch = vcs.get_git_branch
-DiffAdd = vcs.diff_add             -- support vim-gitgutter vim-signify gitsigns
-DiffModified = vcs.diff_modified   -- support vim-gitgutter vim-signify gitsigns
-DiffRemove = vcs.diff_remove       -- support vim-gitgutter vim-signify gitsigns
--- File Provider
-LineColumn = fileinfo.line_column
-FileFormat = fileinfo.get_file_format
-FileEncode = fileinfo.get_file_encode
-FileSize = fileinfo.get_file_size
-FileIcon = fileinfo.get_file_icon
-FileName = fileinfo.get_current_file_name
-LinePercent = fileinfo.current_line_percent
-ScrollBar = extension.scrollbar_instance
-VistaPlugin = extension.vista_nearest
--- Whitespace
-Whitespace = whitespace.get_item
--- Diagnostic Provider
-DiagnosticError = diagnostic.get_diagnostic_error
-DiagnosticWarn = diagnostic.get_diagnostic_warn
-DiagnosticHint = diagnostic.get_diagnostic_hint
-DiagnosticInfo = diagnostic.get_diagnostic_info
--- LSP
-GetLspClient = lspclient.get_lsp_client
-
-local condition = require('galaxyline.condition')
-local colors = require('galaxyline.theme').default
-
-local gl = require "galaxyline"
+local gl = require("galaxyline")
+local condition = require("galaxyline.condition")
 local gls = gl.section
 
+-- Seperators
+local left_separator = ""
+local right_separator = ""
+
+-- Providers
+local fileinfo = require "galaxyline.provider_fileinfo"
+local file_name = fileinfo.get_current_file_name("", "")
+local line_percent = fileinfo.current_line_percent
+
+-- Colors
+local colors = pvim.status_colors
+
+-- Left
 gls.left[1] = {
-  ViMode = {
-    provider = function()
-      -- auto change color according the vim mode
-      local mode_color = {n = colors.red, i = colors.green,v=colors.blue,
-                          [''] = colors.blue,V=colors.blue,
-                          c = colors.magenta,no = colors.red,s = colors.orange,
-                          S=colors.orange,[''] = colors.orange,
-                          ic = colors.yellow,R = colors.violet,Rv = colors.violet,
-                          cv = colors.red,ce=colors.red, r = colors.cyan,
-                          rm = colors.cyan, ['r?'] = colors.cyan,
-                          ['!']  = colors.red,t = colors.red}
-      vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()])
-      return '  '
-    end,
-    highlight = {colors.red, colors.bg,"bold"},
-  },
+   StartElement = {
+      provider = function() return " " end,
+      condition = condition.buffer_not_empty,
+      highlight = { "NONE", colors.file_name },
+   },
 }
 
 gls.left[2] = {
-  FileName = {
-    provider = FileName,
-    icon = " ",
-    highlight = {colors.fg,colors.bg},
-  }
+   FileIcon = {
+      provider = "FileIcon",
+      condition = condition.buffer_not_empty,
+      highlight = { colors.bg, colors.file_name },
+   },
 }
 
 gls.left[3] = {
-  GitBranch = {
-    provider = GitBranch,
-    icon = " ",
-    condition = condition.check_git_workspace,
-    separator = " ",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.cyan, colors.bg },
-  },
+   FileName = {
+      provider = function()
+        return file_name
+      end,
+      condition = condition.buffer_not_empty,
+      highlight = { colors.bg, colors.file_name },
+      separator = right_separator,
+      separator_highlight = { colors.file_name, colors.directory },
+   },
 }
 
 gls.left[4] = {
-  DiffAdd = {
-    provider = DiffAdd,
-    icon = " ",
-    highlight = {colors.green,colors.bg},
-  }
+   current_dir = {
+      provider = function()
+         local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+         return "  " .. dir_name .. " "
+      end,
+      highlight = { colors.file_name, colors.directory },
+      separator = right_separator,
+      separator_highlight = { colors.directory, colors.bg },
+   },
 }
 
 gls.left[5] = {
-  DiffModified = {
-    provider = DiffModified,
-    icon = " ",
-    highlight = {colors.blue,colors.bg},
-  }
+   DiffAdd = {
+      provider = "DiffAdd",
+      icon = "  ",
+      highlight = { colors.git_added, colors.bg },
+   },
 }
 
 gls.left[6] = {
-  DiffRemove = {
-    provider = DiffRemove,
-    icon = " ",
-    highlight = {colors.red,colors.bg},
-  }
+   DiffModified = {
+      provider = "DiffModified",
+      icon = "  ",
+      highlight = { colors.git_modified, colors.bg },
+   },
 }
 
+gls.left[7] = {
+   DiffRemove = {
+      provider = "DiffRemove",
+      icon = "  ",
+      highlight = { colors.git_removed, colors.bg },
+   },
+}
+
+gls.left[8] = {
+   DiagnosticError = {
+      provider = "DiagnosticError",
+      icon = "  ",
+      highlight = { colors.lsp_error, colors.bg },
+   },
+}
+
+gls.left[9] = {
+   DiagnosticWarn = {
+      provider = "DiagnosticWarn",
+      icon = "  ",
+      highlight = { colors.lsp_warn, colors.bg },
+   },
+}
+
+-- Right
 gls.right[1] = {
-  ShowLspClient = {
-    provider = GetLspClient,
-    condition = function()
-      local tbl = { ["dashboard"] = true, [" "] = true }
-      if tbl[vim.bo.filetype] then
-        return false
-      end
-      return true
-    end,
-    icon = "力",
-    highlight = { colors.orange, colors.bg },
-  },
+   lsp_status = {
+      provider = require("galaxyline.provider_lsp").get_lsp_client,
+      icon = "  ",
+      highlight = { colors.fg, colors.bg },
+   },
 }
 
 gls.right[2] = {
-  FileEncode = {
-    provider = FileEncode,
-    condition = condition.hide_in_width,
-    separator = " ",
-    icon = "",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.red, colors.bg },
+  GitBranch = {
+    icon = " ",
+    provider = "GitBranch",
+    condition = require("galaxyline.condition").check_git_workspace,
+    highlight = { colors.bg, colors.git_branch },
+    separator = " " .. left_separator,
+    separator_highlight = { colors.git_branch, colors.bg },
   },
 }
 
 gls.right[3] = {
-  FileIcon = {
-    provider = FileIcon,
-    separator = " ",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.red, colors.bg },
-  }
-}
-
-gls.right[4] = {
-  BufferType = {
-    provider = FileTypeName,
-    condition = condition.hide_in_width,
-    highlight = { colors.red, colors.bg },
-  },
-}
-
-gls.right[5] = {
-  ScrollBar = {
-    provider = ScrollBar,
-    separator = " ",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.cyan, colors.bg },
+  LinePercentage = {
+    icon = " ",
+    provider = line_percent,
+    separator = " " .. left_separator,
+    separator_highlight = { colors.line_percent, colors.git_branch },
+    highlight = { colors.fg, colors.line_percent },
   },
 }

@@ -2,7 +2,10 @@ return {
   { "wbthomason/packer.nvim" },
 
   -- Colorschemes
-  { "sainnhe/edge" },
+  {
+    "npxbr/gruvbox.nvim",
+    requires = { "rktjmp/lush.nvim" }
+  },
 
   -- LSP
   {

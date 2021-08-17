@@ -1,8 +1,34 @@
 pvim = {
   leader = "space",
-  colorscheme = "edge",
+  colorscheme = "gruvbox",
   plugins = {},
-  treesitter_langs = { "lua", "html", "json", "cpp", "c", "typescript", "javascript", "cmake", "dockerfile", "rust", "c_sharp", },
+  treesitter_langs = {
+    "lua",
+    "html",
+    "json",
+    "cpp",
+    "c",
+    "typescript",
+    "javascript",
+    "cmake",
+    "dockerfile",
+    "rust",
+    "c_sharp",
+  },
+  status_colors = {
+    bg = "#282828",
+    fg = "#fbf1c7",
+    file_name = "#fe8019",
+    directory = "#202020",
+    git_added = "#b8bb26",
+    git_modified = "#fabd2f",
+    git_removed = "#fe8019",
+    lsp_warn = "#fe8019",
+    lsp_error = "#9d0006",
+    lsp_server = "#79740e",
+    git_branch = "#fabd2f",
+    line_percent = "#076678",
+  },
 
   -- If user decides to remove this from their own config, we need to ensure that it doesn't fail.
   custom_plugins = {},
@@ -12,5 +38,5 @@ pvim = {
   custom_init = {
     dap = function() end,
   },
-  custom_variables = function() end
+  custom_variables = function() end,
 }
