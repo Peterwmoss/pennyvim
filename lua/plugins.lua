@@ -102,6 +102,7 @@ return {
     end
   },
 
+  -- Debugging
   {
     "mfussenegger/nvim-dap",
     config = function()
