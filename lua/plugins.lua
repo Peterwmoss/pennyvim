@@ -15,6 +15,12 @@ return {
       require "core.lspconfig"
     end,
   },
+  {
+    "onsails/lspkind-nvim",
+    config = function()
+      require("lspkind").init {}
+    end
+  },
 
   -- Tree-Sitter
   {
