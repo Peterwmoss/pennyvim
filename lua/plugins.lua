@@ -4,7 +4,7 @@ return {
   -- Colorschemes
   {
     "npxbr/gruvbox.nvim",
-    requires = { "rktjmp/lush.nvim" }
+    requires = { "rktjmp/lush.nvim" },
   },
 
   -- LSP
@@ -14,12 +14,14 @@ return {
     config = function()
       require "core.lspconfig"
     end,
+    event = "BufWinEnter",
   },
   {
     "onsails/lspkind-nvim",
     config = function()
       require("lspkind").init {}
-    end
+    end,
+    after = "nvim-lspconfig",
   },
 
   -- Tree-Sitter
@@ -29,7 +31,7 @@ return {
     run = ":TSUpdate",
     config = function()
       require "core.treesitter"
-    end
+    end,
   },
 
   -- Which-Key
@@ -38,6 +40,7 @@ return {
     config = function()
       require "core.which-key".setup()
     end,
+    event = "BufWinEnter",
   },
 
   -- Autopairs
@@ -45,33 +48,39 @@ return {
     "windwp/nvim-autopairs",
     config = function()
       require "core/autopairs"
-    end
+    end,
+    event = "BufWinEnter",
   },
 
   -- Icons
-  { "kyazdani42/nvim-web-devicons" },
+  {
+    "kyazdani42/nvim-web-devicons",
+    event = "BufWinEnter",
+  },
 
   -- Bufferline
   {
     "akinsho/nvim-bufferline.lua",
     config = function ()
       require "core.bufferline"
-    end
+    end,
+    event = "BufWinEnter",
   },
 
   -- Comments
   {
     "terrortylor/nvim-comment",
-    event = "BufRead",
+    cmd = "CommentToggle",
     config = function()
       require "nvim_comment".setup()
-    end
+    end,
   },
 
   -- Finding files and documentation
   {
     "nvim-telescope/telescope.nvim",
-    requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } }
+    requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+    cmd = "Telescope",
   },
 
   -- Statusline
@@ -89,6 +98,7 @@ return {
     config = function()
       require("core.compe").setup()
     end,
+    event = "BufWinEnter",
   },
 
   -- Git signs to the left
@@ -99,7 +109,8 @@ return {
     },
     config = function()
       require('gitsigns').setup()
-    end
+    end,
+    event = "BufWinEnter",
   },
 
   -- Debugging
@@ -108,9 +119,13 @@ return {
     config = function()
       require "core/dap"
       pvim.custom_init.dap()
-    end
+    end,
+    event = "BufWinEnter",
   },
 
   -- Indent lines
-  { "lukas-reineke/indent-blankline.nvim" }
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufWinEnter",
+  },
 }
