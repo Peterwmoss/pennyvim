@@ -36,3 +36,5 @@ if string.find(colorschemes, pvim.colorscheme) then
   vim.g.colors_name = pvim.colorscheme
   vim.cmd("colorscheme " .. pvim.colorscheme)
 end
+
+require "extensions"

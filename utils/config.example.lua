@@ -31,6 +31,11 @@ pvim.custom_init.dap = function()
   -- Your dap init function
 end
 
+-- Declare extensions to use. Include username and repository name to install them.
+pvim.extensions = {
+  -- { name = "Peterkmoss/example-pennyvim-extension" },
+}
+
 -- Your can change colors in the status line by changing these values. These are the defaults and inspired from gruvbox:
 -- pvim.status_colors = {
 --     bg = "#282828",

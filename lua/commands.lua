@@ -11,6 +11,19 @@ PennyVimUpdate = function()
   ]]
 end
 
+UpdateExtensions = function()
+  for _, extension in pairs(pvim.extensions) do
+    local full_repo = extension.name
+
+    local git_status = vim.api.nvim_exec("!cd ~/.config/pvim/lua/extensions/" .. full_repo .. " && git pull", true)
+    if not git_status then
+      print("Could not update extension: " .. full_repo)
+    end
+  end
+  print("Please restart PennyVim for extensions to be updated")
+end
+
 vim.cmd [[
-  command PennyVimUpdate lua PennyVimUpdate()
+  command! PennyVimUpdate lua PennyVimUpdate()
+  command! ExtensionsUpdate lua UpdateExtensions()
 ]]

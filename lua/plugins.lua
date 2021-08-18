@@ -14,14 +14,12 @@ return {
     config = function()
       require "core.lspconfig"
     end,
-    event = "BufWinEnter",
   },
   {
     "onsails/lspkind-nvim",
     config = function()
       require("lspkind").init {}
     end,
-    after = "nvim-lspconfig",
   },
 
   -- Tree-Sitter
@@ -98,7 +96,6 @@ return {
     config = function()
       require("core.compe").setup()
     end,
-    event = "BufWinEnter",
   },
 
   -- Git signs to the left

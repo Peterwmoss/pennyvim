@@ -29,6 +29,7 @@ pvim = {
     git_branch = "#fabd2f",
     line_percent = "#076678",
   },
+  extensions = {},
 
   -- If user decides to remove this from their own config, we need to ensure that it doesn't fail.
   custom_plugins = {},
