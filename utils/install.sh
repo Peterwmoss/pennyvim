@@ -19,9 +19,9 @@ bin_location="$git_location/bin/pvim"
 
 install_packer() {
   echo ""
-  echo "   +----------------------------+"
+  echo "   +------------INFO------------+"
   echo "   |   Installing packer.nvim   |"
-  echo "   +----------------------------+"
+  echo "   +------------INFO------------+"
   echo ""
   git clone https://github.com/wbthomason/packer.nvim "$packer_location"
 }
@@ -36,17 +36,17 @@ install_pynvim() {
   read -r answer
   if [ "$answer" != "${answer#[Yy]}" ]; then
     echo ""
-    echo "   +-----------------------+"
+    echo "   +---------INFO----------+"
     echo "   |   Installing pynvim   |"
-    echo "   +-----------------------+"
+    echo "   +---------INFO----------+"
     echo ""
     pip3 install --user pynvim
   else
     echo ""
-    echo "   +-----------------------------------------------+"
-    echo "   |         User aborted install process.         |"
-    echo "   |   Please install pynvim before installing..   |"
-    echo "   +-----------------------------------------------+"
+    echo "   +---------------------ERROR---------------------+"
+    echo "   |          User aborted install process         |"
+    echo "   |    Please install pynvim before installing    |"
+    echo "   +---------------------ERROR---------------------+"
     exit
   fi
 }
@@ -61,12 +61,18 @@ update_pynvim() {
   read -r answer
   if [ "$answer" != "${answer#[Yy]}" ]; then
     echo ""
-    echo "   +---------------------+"
+    echo "   +--------INFO---------+"
     echo "   |   Updating pynvim   |"
-    echo "   +---------------------+"
+    echo "   +--------INFO---------+"
     echo ""
     pip3 install -U --user pynvim
   fi
+}
+
+copy_executable() {
+    echo ""
+    echo "Copying executable to $1"
+    (command -v doas >/dev/null && doas cp "$bin_location" "$1") || (command -v sudo >/dev/null && sudo cp "$bin_location" "$1") 
 }
 
 install_config() {
@@ -88,16 +94,6 @@ install_config() {
     echo "   +-----------------------------+"
     echo ""
     git clone --branch "$PVBRANCH" https://github.com/Peterkmoss/pennyvim.git "$git_location"
-  fi
-
-
-  # Install bin / alias
-  echo ""
-  echo 'Copying executable to /usr/local/bin'
-  if [ -d "/usr/local/bin" ]; then
-    (command -v doas >/dev/null && doas cp "$bin_location" "/usr/local/bin") || (command -v sudo >/dev/null && sudo cp "$bin_location" "/usr/local/bin") 
-  else
-    echo "Please ensure that you put the executable in a location which is in your PATH"
   fi
 
   echo ""
@@ -123,10 +119,33 @@ install_config() {
 		+'autocmd User PackerComplete sleep 50m | qall' \
     +PackerSync)
 
+  if [ -d "/usr/local/bin" ]; then
+    copy_executable "/usr/local/bin"
+  elif [ -d "/usr/bin"  ]; then
+    copy_executable "/usr/bin"
+  else
+    echo ""
+    echo "   +-------------------------------------IMPORTANT-------------------------------------+"
+    echo "   |                                                                                   |"
+    echo "   |       Couldn't copy to /usr/local/bin or /usr/bin, directory does not exist       |"
+    echo "   |   Please ensure that you put the executable in a location which is in your PATH   |"
+    echo "   |                                                                                   |"
+    echo "   +-------------------------------------IMPORTANT-------------------------------------+"
+    echo ""
+    echo "   Executable is found in $bin_location"
+  fi
+
   echo ""
-  echo "   +----------------------+"
-  echo "   |   Install complete   |"
-  echo "   +----------------------+"
+  echo "   +-----------------------------------------------------------INSTALL COMPLETE------------------------------------------------------------+"
+  echo "   |                                                                                                                                       |"
+  echo "   |                Example configuration added to ~/.config/pvim/config.lua. Edit this file to make your own configuration                |"
+  echo "   |                                                                                                                                       |"
+  echo "   |                                 Install language servers (LSP) using the command ':LspInstall <lang>'                                 |"
+  echo "   |                                                                                                                                       |"
+  echo "   |   At first start, TreeSitter will install languages, after which a restart of PennyVim is required for TreeSitter to work properly.   |"
+  echo "   |                                                                                                                                       |"
+  echo "   +-----------------------------------------------------------INSTALL COMPLETE------------------------------------------------------------+"
+  echo ""
 }
 
 case "$@" in
@@ -142,25 +161,27 @@ esac
 case "$@" in
   *--testing*)
     echo ""
-    echo "   +--------------------------+"
+    echo "   +-----------INFO-----------+"
     echo "   |   Running test install   |"
-    echo "   +--------------------------+"
+    echo "   +-----------INFO-----------+"
     testing=1
     ;;
 esac
 
 echo ""
-echo "   +-------------------------+"
-echo "   |   Installing PennyVim   |"
-echo "   +-------------------------+"
+echo "   +------------INFO------------+"
+echo "   |   Installing PennyVim...   |"
+echo "   +------------INFO------------+"
 
 case "$@" in
   *--reinstall*)
     echo ""
-    echo "   +-----------------------------------------------+"
-    echo "   |                 !!REINSTALL!!                 |"
+    echo "   +-------------------IMPORTANT-------------------+"
+    echo "   |                                               |"
+    echo "   |                !! REINSTALL !!                |"
     echo "   |   Removing current install due to reinstall   |"
-    echo "   +-----------------------------------------------+"
+    echo "   |                                               |"
+    echo "   +-------------------IMPORTANT-------------------+"
 
     echo ""
     echo "3... (use CTRL-c to cancel)"
@@ -186,10 +207,10 @@ esac
 
 if [ -d "$git_location" ]; then
     echo ""
-    echo "   +---------------------------------------------+"
+    echo "   +--------------------ERROR--------------------+"
     echo "   |          PennyVim aready installed          |"
     echo "   |   Use the '--reinstall' flag to reinstall   |"
-    echo "   +---------------------------------------------+"
+    echo "   +--------------------ERROR--------------------+"
     exit
 fi
 
@@ -211,16 +232,3 @@ fi
 (pip3 list | grep pynvim >/dev/null && update_pynvim) || install_pynvim
 
 install_config
-
-echo ""
-echo "   +--------------------------------------------------------------------------------------------------------------+"
-echo "   |   Example configuration added to ~/.config/pvim/config.lua. Edit this file to make your own configuration.   |"
-echo "   +--------------------------------------------------------------------------------------------------------------+"
-echo ""
-echo "   +---------------------------------------------------------------------------+"
-echo "   |   Install language servers (LSP) using the command ':LspInstall <lang>'   |"
-echo "   +---------------------------------------------------------------------------+"
-echo ""
-echo "   +---------------------------------------------------------------------------------------------------------------------------------------+"
-echo "   |   At first start, TreeSitter will install languages, after which a restart of PennyVim is required for TreeSitter to work properly.   |"
-echo "   +---------------------------------------------------------------------------------------------------------------------------------------+"
