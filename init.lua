@@ -29,9 +29,7 @@ local plugins = require "plugins"
 local plugin_loader = require("plugin-loader").init()
 plugin_loader:load { plugins, pvim.custom_plugins }
 
-local colorschemes = vim.api.nvim_exec([[
-  echo getcompletion('', 'color')
-]], true)
+local colorschemes = vim.api.nvim_exec("echo getcompletion('', 'color')", true)
 if string.find(colorschemes, pvim.colorscheme) then
   vim.g.colors_name = pvim.colorscheme
   vim.cmd("colorscheme " .. pvim.colorscheme)
