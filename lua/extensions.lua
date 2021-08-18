@@ -38,5 +38,7 @@ for _, extension in pairs(pvim.extensions) do
 
   module.init()
 
+  vim.cmd("set runtimepath-=" .. extensions_location .. full_repo)
+
   ::continue::
 end
