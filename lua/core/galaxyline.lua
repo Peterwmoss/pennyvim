@@ -116,11 +116,25 @@ gls.right[2] = {
 }
 
 gls.right[3] = {
+  LinePercentageGit = {
+    icon = " ",
+    provider = line_percent,
+    separator = " " .. left_separator,
+    condition = require("galaxyline.condition").check_git_workspace,
+    separator_highlight = { colors.line_percent, colors.git_branch },
+    highlight = { colors.fg, colors.line_percent },
+  },
+}
+
+gls.right[4] = {
   LinePercentage = {
     icon = " ",
     provider = line_percent,
     separator = " " .. left_separator,
-    separator_highlight = { colors.line_percent, colors.git_branch },
+    condition = function ()
+      return not require("galaxyline.condition").check_git_workspace()
+    end,
+    separator_highlight = { colors.line_percent, colors.bg },
     highlight = { colors.fg, colors.line_percent },
   },
 }
