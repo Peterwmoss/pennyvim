@@ -29,12 +29,12 @@ module.config = function()
         s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
         q = { "<cmd>lua require'dap'.stop()<cr>", "Quit" },
       },
-      ["f"] = { ":Telescope find_files<CR>", "Find Files" },
+      ["f"] = { ":Telescope git_files<CR>", "Git Files" },
+      ["F"] = { ":Telescope find_files<CR>", "Find Files" },
       ["g"] = {
         name = "Git",
         b = { ":Telescope git_branches<CR>", "Checkout Branch" },
         B = { ":Gitsigns toggle_current_line_blame<CR>", "Blame current line" },
-        f = { ":Telescope git_files<CR>", "Git Files" },
         ["r"] = {
           name = "Reset",
           b = { ":Gitsigns reset_buffer<CR>", "Buffer" },
