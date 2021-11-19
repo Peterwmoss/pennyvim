@@ -125,4 +125,14 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufWinEnter",
   },
+
+  -- Highlight todo among other keywords in comments
+  {
+    "folke/todo-comments.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("todo-comments").setup { }
+    end,
+    event = "BufWinEnter",
+  },
 }
