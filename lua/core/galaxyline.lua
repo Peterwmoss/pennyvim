@@ -7,8 +7,10 @@ local left_separator = ""
 local right_separator = ""
 
 -- Providers
+local vcs = require('galaxyline.provider_vcs')
+local git_branch = vcs.get_git_branch
 local fileinfo = require "galaxyline.provider_fileinfo"
-local file_name = fileinfo.get_current_file_name("", "")
+local file_name = fileinfo.get_current_file_name
 local line_percent = fileinfo.current_line_percent
 
 -- Colors
@@ -34,7 +36,7 @@ gls.left[2] = {
 gls.left[3] = {
    FileName = {
       provider = function()
-        return file_name
+        return file_name("", "")
       end,
       condition = condition.buffer_not_empty,
       highlight = { colors.bg, colors.file_name },
@@ -46,16 +48,29 @@ gls.left[3] = {
 gls.left[4] = {
    current_dir = {
       provider = function()
-         local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-         return "  " .. dir_name .. " "
+        local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+        return "  " .. dir_name .. " "
       end,
       highlight = { colors.file_name, colors.directory },
       separator = right_separator,
-      separator_highlight = { colors.directory, colors.bg },
+      separator_highlight = { colors.directory, colors.git_branch },
    },
 }
 
 gls.left[5] = {
+  GitBranch = {
+    icon = "  ",
+    provider = function()
+      return git_branch() .. " "
+    end,
+    condition = require("galaxyline.condition").check_git_workspace,
+    highlight = { colors.bg, colors.git_branch },
+    separator = right_separator,
+    separator_highlight = { colors.git_branch, colors.bg },
+  },
+}
+
+gls.left[6] = {
    DiffAdd = {
       provider = "DiffAdd",
       icon = "  ",
@@ -63,7 +78,7 @@ gls.left[5] = {
    },
 }
 
-gls.left[6] = {
+gls.left[7] = {
    DiffModified = {
       provider = "DiffModified",
       icon = "  ",
@@ -71,7 +86,7 @@ gls.left[6] = {
    },
 }
 
-gls.left[7] = {
+gls.left[8] = {
    DiffRemove = {
       provider = "DiffRemove",
       icon = "  ",
@@ -79,7 +94,7 @@ gls.left[7] = {
    },
 }
 
-gls.left[8] = {
+gls.left[9] = {
    DiagnosticError = {
       provider = "DiagnosticError",
       icon = "  ",
@@ -87,7 +102,7 @@ gls.left[8] = {
    },
 }
 
-gls.left[9] = {
+gls.left[10] = {
    DiagnosticWarn = {
       provider = "DiagnosticWarn",
       icon = "  ",
@@ -105,35 +120,10 @@ gls.right[1] = {
 }
 
 gls.right[2] = {
-  GitBranch = {
-    icon = " ",
-    provider = "GitBranch",
-    condition = require("galaxyline.condition").check_git_workspace,
-    highlight = { colors.bg, colors.git_branch },
-    separator = " " .. left_separator,
-    separator_highlight = { colors.git_branch, colors.bg },
-  },
-}
-
-gls.right[3] = {
-  LinePercentageGit = {
-    icon = " ",
-    provider = line_percent,
-    separator = " " .. left_separator,
-    condition = require("galaxyline.condition").check_git_workspace,
-    separator_highlight = { colors.line_percent, colors.git_branch },
-    highlight = { colors.fg, colors.line_percent },
-  },
-}
-
-gls.right[4] = {
   LinePercentage = {
     icon = " ",
     provider = line_percent,
     separator = " " .. left_separator,
-    condition = function ()
-      return not require("galaxyline.condition").check_git_workspace()
-    end,
     separator_highlight = { colors.line_percent, colors.bg },
     highlight = { colors.fg, colors.line_percent },
   },
