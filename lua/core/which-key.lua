@@ -29,8 +29,8 @@ module.config = function()
         s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
         q = { "<cmd>lua require'dap'.stop()<cr>", "Quit" },
       },
-      ["f"] = { ":Telescope git_files<CR>", "Git Files" },
-      ["F"] = { ":Telescope find_files<CR>", "Find Files" },
+      ["f"] = { ":Telescope git_files theme=dropdown<CR>", "Git Files" },
+      ["F"] = { ":Telescope find_files theme=dropdown<CR>", "Find Files" },
       ["g"] = {
         name = "Git",
         b = { ":Telescope git_branches<CR>", "Checkout Branch" },
@@ -40,6 +40,7 @@ module.config = function()
           b = { ":Gitsigns reset_buffer<CR>", "Buffer" },
           h = { ":Gitsigns reset_hunk<CR>", "Hunk" },
         },
+        s = { ":Telescope git_status theme=dropdown<CR>", "Status" },
       },
       ["h"] = { ":Telescope help_tags<CR>", "Help" },
       ["l"] = {

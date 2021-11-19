@@ -79,6 +79,9 @@ return {
     "nvim-telescope/telescope.nvim",
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
     cmd = "Telescope",
+    config = function()
+      require "telescope".setup { }
+    end,
   },
 
   -- Statusline
