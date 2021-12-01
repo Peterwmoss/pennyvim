@@ -10,9 +10,9 @@ return {
   -- LSP
   {
     "neovim/nvim-lspconfig",
-    requires = { "kabouzeid/nvim-lspinstall" },
+    requires = { "williamboman/nvim-lsp-installer" },
     config = function()
-      require "core.lspconfig"
+      require "core.lsp-config"
     end,
   },
   {
@@ -102,8 +102,8 @@ return {
       {'hrsh7th/cmp-buffer'},
       {'hrsh7th/cmp-path'},
       {'hrsh7th/cmp-cmdline'},
-      {'hrsh7th/cmp-vsnip'},
       {'hrsh7th/vim-vsnip'},
+      {'hrsh7th/cmp-vsnip'},
     },
     config = function()
       require("core.completion").setup()
