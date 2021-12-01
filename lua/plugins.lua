@@ -36,7 +36,7 @@ return {
   {
     "folke/which-key.nvim",
     config = function()
-      require "core.which-key".setup()
+      require "core.keymaps".setup()
     end,
     event = "BufWinEnter",
   },
