@@ -29,8 +29,8 @@ module.config = function()
         s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
         q = { "<cmd>lua require'dap'.stop()<cr>", "Quit" },
       },
-      ["f"] = { ":Telescope git_files theme=dropdown<CR>", "Git Files" },
-      ["F"] = { ":Telescope find_files theme=dropdown<CR>", "Find Files" },
+      ["f"] = { ":Telescope find_files theme=dropdown<CR>", "Find Files" },
+      ["F"] = { ":Telescope git_files theme=dropdown<CR>", "Git Files" },
       ["g"] = {
         name = "Git",
         b = { ":Telescope git_branches<CR>", "Checkout Branch" },

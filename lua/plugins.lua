@@ -2,9 +2,17 @@ return {
   { "wbthomason/packer.nvim" },
 
   -- Colorschemes
+  { "ellisonleao/gruvbox.nvim", },
+  { "folke/tokyonight.nvim", },
+  { "EdenEast/nightfox.nvim", },
   {
-    "npxbr/gruvbox.nvim",
-    requires = { "rktjmp/lush.nvim" },
+    "catppuccin/nvim",
+    as = "catppuccin",
+    config = function()
+        require("catppuccin").setup {
+            flavour = "macchiato"
+          }
+    end,
   },
 
   -- LSP
@@ -58,6 +66,8 @@ return {
   -- Bufferline
   {
     "akinsho/nvim-bufferline.lua",
+    tag = "v3.*",
+    requires = "kyazdani42/nvim-web-devicons",
     config = function ()
       require "core.bufferline"
     end,
