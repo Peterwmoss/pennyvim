@@ -43,3 +43,7 @@ local default_options = {
 for k, v in pairs(default_options) do
   vim.opt[k] = v
 end
+
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
