@@ -22,6 +22,12 @@ local mappings = {
 
     { "<tab>", ":BufferLineCycleNext<CR>" },
     { "<s-tab>", ":BufferLineCyclePrev<CR>" },
+
+    -- Split resize
+    { "<leader>rh-", ":10winc <<CR>" },
+    { "<leader>rv-", ":10winc -<CR>" },
+    { "<leader>rv+", ":10winc +<CR>" },
+    { "<leader>rh+", ":10winc ><CR>" },
   },
   i_mode = {
   },

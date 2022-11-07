@@ -60,6 +60,11 @@ module.config = function()
         u = { ":PackerUpdate<CR>", "Update" },
       },
       ["q"] = { ":q<CR>", "Quit" },
+      ["r"] = {
+        name = "Resize",
+        ["+"] = { ":NvimTreeResize +10<CR>", "Increase size of filetree" },
+        ["-"] = { ":NvimTreeResize -10<CR>", "Decrease size of filetree" },
+      },
       ["s"] = {
         name = "Split",
         h = { ":split<CR>", "Horizontal" },
