@@ -12,25 +12,10 @@ module.config = function()
       ["c"] = { ":CommentToggle<CR>", "Comment" },
     },
     mappings = {
-      ["b"] = {
-        name = "Buffers",
-        f = { ":Telescope buffers<CR>", "Buffers" },
-        d = { ":bdelete<CR>", "Delete Buffer" },
-      },
+      ["{"] = { "<C-^>", "Last file" },
+      ["b"] = { ":Telescope buffers<CR>", "Buffers" },
       ["c"] = { ":CommentToggle<CR>", "Comment" },
-      ["d"] = {
-        name = "Debug",
-        t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-        c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-        d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
-        i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
-        o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
-        u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
-        s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
-        q = { "<cmd>lua require'dap'.stop()<cr>", "Quit" },
-      },
       ["f"] = { ":Telescope find_files theme=dropdown<CR>", "Find Files" },
-      ["F"] = { ":Telescope git_files theme=dropdown<CR>", "Git Files" },
       ["g"] = {
         name = "Git",
         b = { ":Telescope git_branches<CR>", "Checkout Branch" },
@@ -60,11 +45,6 @@ module.config = function()
         u = { ":PackerUpdate<CR>", "Update" },
       },
       ["q"] = { ":q<CR>", "Quit" },
-      ["r"] = {
-        name = "Resize",
-        ["+"] = { ":NvimTreeResize +10<CR>", "Increase size of filetree" },
-        ["-"] = { ":NvimTreeResize -10<CR>", "Decrease size of filetree" },
-      },
       ["s"] = {
         name = "Split",
         h = { ":split<CR>", "Horizontal" },

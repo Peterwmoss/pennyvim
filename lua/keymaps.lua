@@ -20,8 +20,8 @@ local mappings = {
     { "<C-k>", "<C-w>k" },
     { "<C-l>", "<C-w>l" },
 
-    { "<tab>", ":BufferLineCycleNext<CR>" },
-    { "<s-tab>", ":BufferLineCyclePrev<CR>" },
+    { "<tab>", ":bnext<CR>" },
+    { "<s-tab>", ":bprev<CR>" },
 
     -- Split resize
     { "<leader>rh-", ":10winc <<CR>" },

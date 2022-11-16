@@ -1,9 +1,11 @@
-local lsp_installer = require'nvim-lsp-installer'
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
+require'mason'.setup {}
+require'mason-lspconfig'.setup {}
 
-  server:setup(opts)
-end)
+require("mason-lspconfig").setup_handlers {
+  function(server_name)
+    require("lspconfig")[server_name].setup {}
+  end,
+}
 
 local utils = require "utils"
 

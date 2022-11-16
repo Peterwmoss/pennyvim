@@ -11,6 +11,7 @@ local vcs = require('galaxyline.provider_vcs')
 local git_branch = vcs.get_git_branch
 local fileinfo = require "galaxyline.provider_fileinfo"
 local file_name = fileinfo.get_current_file_name
+local file_path = fileinfo.get_current_file_path
 local line_percent = fileinfo.current_line_percent
 
 -- Colors
@@ -36,7 +37,7 @@ gls.left[2] = {
 gls.left[3] = {
    FileName = {
       provider = function()
-        return file_name("", "")
+        return file_path("", "")
       end,
       condition = condition.buffer_not_empty,
       highlight = { colors.bg, colors.file_name },
@@ -53,7 +54,12 @@ gls.left[4] = {
       end,
       highlight = { colors.file_name, colors.directory },
       separator = right_separator,
-      separator_highlight = { colors.directory, colors.git_branch },
+      separator_highlight = function ()
+        if require("galaxyline.condition").check_git_workspace == true then
+          return { colors.directory, colors.git_branch }
+        end
+        return { colors.directory, colors.bg }
+      end
    },
 }
 

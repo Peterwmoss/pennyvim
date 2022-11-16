@@ -9,16 +9,17 @@ return {
     "catppuccin/nvim",
     as = "catppuccin",
     config = function()
-        require("catppuccin").setup {
-            flavour = "macchiato"
-          }
+      require("catppuccin").setup { flavour = "macchiato" }
     end,
   },
 
   -- LSP
   {
     "neovim/nvim-lspconfig",
-    requires = { "williamboman/nvim-lsp-installer" },
+    requires = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
     config = function()
       require "core.lsp-config"
     end,
@@ -57,23 +58,6 @@ return {
     event = "BufWinEnter",
   },
 
-  -- Icons
-  {
-    "kyazdani42/nvim-web-devicons",
-    event = "BufWinEnter",
-  },
-
-  -- Bufferline
-  {
-    "akinsho/nvim-bufferline.lua",
-    tag = "v3.*",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function ()
-      require "core.bufferline"
-    end,
-    event = "BufWinEnter",
-  },
-
   -- Comments
   {
     "terrortylor/nvim-comment",
@@ -90,6 +74,7 @@ return {
     cmd = "Telescope",
     config = function()
       require "telescope".setup { }
+      require "telescope".load_extension("emoji")
     end,
   },
 
@@ -127,16 +112,6 @@ return {
     },
     config = function()
       require('gitsigns').setup()
-    end,
-    event = "BufWinEnter",
-  },
-
-  -- Debugging
-  {
-    "mfussenegger/nvim-dap",
-    config = function()
-      require "core/dap"
-      pvim.custom_init.dap()
     end,
     event = "BufWinEnter",
   },
