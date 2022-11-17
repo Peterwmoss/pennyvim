@@ -55,7 +55,7 @@ gls.left[4] = {
       highlight = { colors.file_name, colors.directory },
       separator = right_separator,
       separator_highlight = function ()
-        if require("galaxyline.condition").check_git_workspace == true then
+        if require("galaxyline.condition").check_git_workspace() == true then
           return { colors.directory, colors.git_branch }
         end
         return { colors.directory, colors.bg }
