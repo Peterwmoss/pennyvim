@@ -2,15 +2,10 @@ local gl = require("galaxyline")
 local condition = require("galaxyline.condition")
 local gls = gl.section
 
--- Seperators
-local left_separator = ""
-local right_separator = ""
-
 -- Providers
 local vcs = require('galaxyline.provider_vcs')
 local git_branch = vcs.get_git_branch
 local fileinfo = require "galaxyline.provider_fileinfo"
-local file_name = fileinfo.get_current_file_name
 local file_path = fileinfo.get_current_file_path
 local line_percent = fileinfo.current_line_percent
 
@@ -41,8 +36,6 @@ gls.left[3] = {
       end,
       condition = condition.buffer_not_empty,
       highlight = { colors.bg, colors.file_name },
-      separator = right_separator,
-      separator_highlight = { colors.file_name, colors.directory },
    },
 }
 
@@ -50,33 +43,32 @@ gls.left[4] = {
    current_dir = {
       provider = function()
         local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-        return "  " .. dir_name .. " "
+        return "   " .. dir_name .. " "
       end,
       highlight = { colors.file_name, colors.directory },
-      separator = right_separator,
-      separator_highlight = function ()
-        if require("galaxyline.condition").check_git_workspace() == true then
-          return { colors.directory, colors.git_branch }
-        end
-        return { colors.directory, colors.bg }
-      end
    },
 }
 
 gls.left[5] = {
   GitBranch = {
-    icon = "  ",
+    icon = "   ",
     provider = function()
       return git_branch() .. " "
     end,
     condition = require("galaxyline.condition").check_git_workspace,
     highlight = { colors.bg, colors.git_branch },
-    separator = right_separator,
-    separator_highlight = { colors.git_branch, colors.bg },
   },
 }
 
 gls.left[6] = {
+  Space = {
+    provider = function ()
+      return " "
+    end
+  },
+}
+
+gls.left[7] = {
    DiffAdd = {
       provider = "DiffAdd",
       icon = "  ",
@@ -84,7 +76,7 @@ gls.left[6] = {
    },
 }
 
-gls.left[7] = {
+gls.left[8] = {
    DiffModified = {
       provider = "DiffModified",
       icon = "  ",
@@ -92,7 +84,7 @@ gls.left[7] = {
    },
 }
 
-gls.left[8] = {
+gls.left[9] = {
    DiffRemove = {
       provider = "DiffRemove",
       icon = "  ",
@@ -100,7 +92,7 @@ gls.left[8] = {
    },
 }
 
-gls.left[9] = {
+gls.left[10] = {
    DiagnosticError = {
       provider = "DiagnosticError",
       icon = "  ",
@@ -108,7 +100,7 @@ gls.left[9] = {
    },
 }
 
-gls.left[10] = {
+gls.left[11] = {
    DiagnosticWarn = {
       provider = "DiagnosticWarn",
       icon = "  ",
@@ -129,8 +121,7 @@ gls.right[2] = {
   LinePercentage = {
     icon = " ",
     provider = line_percent,
-    separator = " " .. left_separator,
-    separator_highlight = { colors.line_percent, colors.bg },
+    separator = " ",
     highlight = { colors.fg, colors.line_percent },
   },
 }
