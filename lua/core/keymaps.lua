@@ -55,7 +55,7 @@ module.config = function()
         s = { ":set spell!<CR>", "Spelling" },
         h = { ":set hlsearch!<CR>", "Highlight search" },
       },
-      ["w"] = { ":w!<CR>", "Save" },
+      ["w"] = { ":up<CR>", "Save" },
     }
   }
 end
