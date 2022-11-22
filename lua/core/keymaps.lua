@@ -37,13 +37,6 @@ module.config = function()
         r = { ":Telescope lsp_references<CR>", "References" },
         R = { ":lua vim.lsp.buf.rename()<CR>", "Rename" },
       },
-      ["p"] = {
-        name = "Packer",
-        s = { ":PackerSync<CR>", "Sync" },
-        c = { ":PackerClean<CR>", "Clean" },
-        i = { ":PackerInstall<CR>", "Install" },
-        u = { ":PackerUpdate<CR>", "Update" },
-      },
       ["q"] = { ":q<CR>", "Quit" },
       ["s"] = {
         name = "Split",
