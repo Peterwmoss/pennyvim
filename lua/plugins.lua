@@ -80,10 +80,11 @@ return {
 
   -- Statusline
   {
-    "glepnir/galaxyline.nvim",
+    "nvim-lualine/lualine.nvim",
     config = function()
-      require "core.galaxyline"
+      require "core.lualine"
     end,
+    requires = { "kyazdani42/nvim-web-devicons" },
     event = "BufWinEnter",
   },
 
