@@ -12,27 +12,30 @@ module.config = function()
       ["c"] = { ":CommentToggle<CR>", "Comment" },
     },
     mappings = {
-      ["{"] = { "<C-^>", "Last file" },
-      ["b"] = { ":Telescope buffers<CR>", "Buffers" },
+      ["b"] = {
+        name = "Buffers",
+        b = { ":Telescope buffers<CR>", "Telescope buffers" },
+        d = { ":bdelete<CR>", "Delete current buffer" },
+      },
       ["c"] = { ":CommentToggle<CR>", "Comment" },
+      ["e"] = { ":NvimTreeToggle<CR>", "Nvim Tree Toggle" },
       ["f"] = { ":Telescope find_files theme=dropdown<CR>", "Find Files" },
       ["g"] = {
         name = "Git",
         b = { ":Telescope git_branches<CR>", "Checkout Branch" },
         B = { ":Gitsigns toggle_current_line_blame<CR>", "Blame current line" },
-        ["r"] = {
-          name = "Reset",
-          b = { ":Gitsigns reset_buffer<CR>", "Buffer" },
-          h = { ":Gitsigns reset_hunk<CR>", "Hunk" },
-        },
         s = { ":Telescope git_status theme=dropdown<CR>", "Status" },
       },
       ["h"] = { ":Telescope help_tags<CR>", "Help" },
       ["l"] = {
         name = "LSP",
+        d = { ":lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
         a = { ":lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-        d = { ":lua vim.lsp.buf.definition()<CR>", "Definition" },
-        D = { ":lua vim.lsp.buf.declaration()<CR>", "Declaration" },
+        g = {
+          name = "Go to",
+          d = { ":lua vim.lsp.buf.definition()<CR>", "Definition" },
+          D = { ":lua vim.lsp.buf.declaration()<CR>", "Declaration" },
+        },
         f = { ":lua vim.lsp.buf.formatting()<CR>", "Format" },
         r = { ":Telescope lsp_references<CR>", "References" },
         R = { ":lua vim.lsp.buf.rename()<CR>", "Rename" },
@@ -49,7 +52,8 @@ module.config = function()
         h = { ":set hlsearch!<CR>", "Highlight search" },
       },
       ["w"] = { ":up<CR>", "Save" },
-    }
+      ["x"] = { ":Explore<CR>", "Explore" },
+    },
   }
 end
 

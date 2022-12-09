@@ -132,4 +132,25 @@ return {
     end,
     event = "BufWinEnter",
   },
+
+  {
+    "akinsho/toggleterm.nvim",
+    tag = '*',
+    config = function ()
+      require("toggleterm").setup{
+        open_mapping = [[<c-t>]],
+        terminal_mappings = true,
+      }
+    end
+  },
+
+  {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function ()
+      require("nvim-tree").setup{}
+    end
+  }
 }
