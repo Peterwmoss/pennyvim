@@ -23,7 +23,18 @@ UpdateExtensions = function()
   print("Please restart PennyVim for extensions to be updated")
 end
 
+Curl = function ()
+  local method = vim.fn.input("Method: ", "GET")
+  local url = vim.fn.input("Url: ", "localhost")
+  local headers = vim.fn.input("Headers: ", "{}")
+  local body = vim.fn.input("Body: ", "")
+  if not (url == "" or method == "") then
+    os.execute('curl -X ' .. method .. ' -H ' .. headers .. ' -d \'' .. body .. '\' ' .. url)
+  end
+end
+
 vim.cmd [[
   command! PennyVimUpdate lua PennyVimUpdate()
   command! ExtensionsUpdate lua UpdateExtensions()
+  command! Curl lua Curl()
 ]]
