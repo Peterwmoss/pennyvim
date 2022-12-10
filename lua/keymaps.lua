@@ -4,6 +4,7 @@ local options = {
   nnoremap = { noremap = true, silent = true },
   inoremap = { noremap = true, silent = true },
   vnoremap = { noremap = true, silent = true },
+  tnoremap = { noremap = true, silent = true },
 }
 
 if pvim.leader == " " or pvim.leader == "space" then
@@ -35,11 +36,14 @@ local mappings = {
     { "<", "<gv" },
     { ">", ">gv" },
   },
+  t_mode = {
+  },
 }
 
 utils.add_keymap_normal(options.nnoremap, mappings["n_mode"])
 utils.add_keymap_insert(options.inoremap, mappings["i_mode"])
 utils.add_keymap_visual(options.inoremap, mappings["v_mode"])
+utils.add_keymap_terminal(options.tnoremap, mappings["t_mode"])
 
 for _, mapping in ipairs(pvim.custom_mappings) do
   vim.api.nvim_set_keymap(mapping.mode, mapping.comb, mapping.mapping, mapping.options)

@@ -18,4 +18,8 @@ function utils.add_keymap_insert(opts, keymaps)
   utils.add_keymap("i", opts, keymaps)
 end
 
+function utils.add_keymap_terminal(opts, keymaps)
+  utils.add_keymap("t", opts, keymaps)
+end
+
 return utils
