@@ -145,12 +145,16 @@ return {
   },
 
   {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function ()
-      require("nvim-tree").setup{}
-    end
-  }
+    'akinsho/bufferline.nvim',
+    tag = "v3.*",
+    requires = 'nvim-tree/nvim-web-devicons',
+    config = function()
+      require("bufferline").setup{
+        options = {
+          separator_style = "thick",
+          diagnostics = "nvim_lsp",
+        }
+      }
+    end,
+  },
 }

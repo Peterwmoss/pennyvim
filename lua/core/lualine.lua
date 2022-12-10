@@ -4,7 +4,7 @@ end
 
 require('lualine').setup{
   options = {
-    theme = 'gruvbox'
+    theme = 'onenord'
   },
   sections = {
     lualine_a = { 'mode' },

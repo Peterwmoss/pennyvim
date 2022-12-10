@@ -10,15 +10,20 @@ module.config = function()
     },
     vmappings = {
       ["c"] = { ":CommentToggle<CR>", "Comment" },
+      ["p"] = {
+        name = "Paste",
+        p = { '"0p', "Paste after" },
+        P = { '"0P', "Paste before" },
+      },
     },
     mappings = {
       ["b"] = {
         name = "Buffers",
         b = { ":Telescope buffers<CR>", "Telescope buffers" },
-        d = { ":bdelete<CR>", "Delete current buffer" },
+        d = { ":bdelete!<CR>", "Delete current buffer" },
       },
       ["c"] = { ":CommentToggle<CR>", "Comment" },
-      ["e"] = { ":NvimTreeToggle<CR>", "Nvim Tree Toggle" },
+      ["e"] = { ":w<CR>:source %<CR>", "Save and source file" },
       ["f"] = { ":Telescope find_files theme=dropdown<CR>", "Find Files" },
       ["g"] = {
         name = "Git",
@@ -40,18 +45,23 @@ module.config = function()
         r = { ":Telescope lsp_references<CR>", "References" },
         R = { ":lua vim.lsp.buf.rename()<CR>", "Rename" },
       },
+      ["p"] = {
+        name = "Paste",
+        p = { '"0p', "Paste after" },
+        P = { '"0P', "Paste before" },
+      },
       ["q"] = { ":q<CR>", "Quit" },
       ["s"] = {
         name = "Split",
-        h = { ":split<CR>", "Horizontal" },
-        v = { ":vsplit<CR>", "Vertical" },
+        h = { ":new<CR>", "Horizontal" },
+        v = { ":vnew<CR>", "Vertical" },
       },
       ["t"] = {
         name = "Toggle",
         s = { ":set spell!<CR>", "Spelling" },
         h = { ":set hlsearch!<CR>", "Highlight search" },
       },
-      ["w"] = { ":up<CR>", "Save" },
+      ["w"] = { ":w<CR>", "Save" },
       ["x"] = { ":Explore<CR>", "Explore" },
     },
   }
