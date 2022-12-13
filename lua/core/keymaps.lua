@@ -23,6 +23,17 @@ module.config = function()
         d = { ":bdelete!<CR>", "Delete current buffer" },
       },
       ["c"] = { ":CommentToggle<CR>", "Comment" },
+      ["d"] = {
+        b = { ":lua require('dap').toggle_breakpoint()<CR>", "Toggle breakpoint" },
+        B = { ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", "Conditional breakpoint" },
+        s = { ":lua require('dap').continue()<CR>", "Continue / Start debugger" },
+        d = { ":lua require('dap').terminate()<CR>", "Terminate debugger" },
+        i = { ":lua require('dap').step_into()<CR>", "Step into" },
+        n = { ":lua require('dap').step_over()<CR>", "Step over" },
+        o = { ":lua require('dapui').open()<CR>", "Open DAP UI" },
+        c = { ":lua require('dapui').close()<CR>", "Close DAP UI" },
+        t = { ":lua require('dap-go').debug_test()<CR>", "Debug test" },
+      },
       ["e"] = { ":w<CR>:source %<CR>", "Save and source file" },
       ["f"] = { ":Telescope find_files theme=dropdown<CR>", "Find Files" },
       ["g"] = {
