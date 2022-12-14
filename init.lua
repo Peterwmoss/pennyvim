@@ -4,6 +4,7 @@ vim.cmd [[
   set packpath-=~/.local/share/nvim/site
   set packpath^=~/.local/share/pennyvim/site
   set packpath^=~/.config/pvim
+  set packpath^=~/.config/pvim/after
 
   set runtimepath-=~/.config/nvim
   set runtimepath-=~/.config/nvim/after
